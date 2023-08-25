@@ -1,0 +1,25 @@
+ion-content {
+    --background: var(--ion-color-primary);
+    
+}
+
+ion-button {
+    color: white;
+    font-weight: bold;
+}
+
+ion-card-header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust this for spacing */
+    .centered-image {
+        height: 120px;
+        width: 200px;
+    }
+}
