@@ -1,0 +1,29 @@
+.view-detail {
+    font-size: small;
+    text-transform: initial;
+}
+
+ion-card {
+    --background: #fca5a5;
+    padding: 0;
+    box-shadow: none;
+    --border-radius: 14px;
+    color: white;
+    font-weight: 600;
+}
+
+.header-main {
+
+    font-weight: 600;
+    color: #fca5a5;
+}
+
+ion-title {
+    &.md {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        height: 0;
+        text-align: center;
+    }
+}

@@ -1,0 +1,36 @@
+ion-title {
+    &.md {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        height: 0;
+        text-align: center;
+    }
+}
+
+ion-card {
+    --background: rgba(255, 255, 255, .2);
+    padding: 0;
+    --border-radius: 14px;
+    color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+.my-list{
+    margin-top: -20px;
+}
+
+ion-content {
+    --background: rgb(246,80,160);
+    --background: linear-gradient(142deg, rgba(255,91,107,1) 0%, rgba(246,80,160,1) 24%, rgba(232,170,173,1) 100%);
+}
+
+ion-list {
+    background: transparent !important;
+    transition: 0 !important;
+}
+
+ion-title {
+    color: white;
+}
