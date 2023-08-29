@@ -17,13 +17,13 @@ ion-card {
     box-shadow: none;
 }
 
-.my-list{
+.my-list {
     margin-top: -20px;
 }
 
 ion-content {
-    --background: rgb(246,80,160);
-    --background: linear-gradient(142deg, rgba(255,91,107,1) 0%, rgba(246,80,160,1) 24%, rgba(232,170,173,1) 100%);
+    --background: rgb(246, 80, 160);
+    --background: linear-gradient(142deg, rgba(255, 91, 107, 1) 0%, rgba(246, 80, 160, 1) 24%, rgba(232, 170, 173, 1) 100%);
 }
 
 ion-list {
@@ -34,3 +34,9 @@ ion-list {
 ion-title {
     color: white;
 }
+
+.title-task {
+    color: black;
+}
+
+

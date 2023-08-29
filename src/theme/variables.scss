@@ -19,6 +19,24 @@
   --ion-color-tint: var(--ion-color-main-tint);
 }
 
+:root {
+  --ion-color-main-bg: #F2F2F2;
+  --ion-color-main-bg-rgb: 242, 242, 242;
+  --ion-color-main-bg-contrast: #000000;
+  --ion-color-main-bg-contrast-rgb: 0, 0, 0;
+  --ion-color-main-bg-shade: #d5d5d5;
+  --ion-color-main-bg-tint: #f3f3f3;
+}
+
+.ion-color-main-bg {
+  --ion-color-base: var(--ion-color-main-bg);
+  --ion-color-base-rgb: var(--ion-color-main-bg-rgb);
+  --ion-color-contrast: var(--ion-color-main-bg-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-main-bg-contrast-rgb);
+  --ion-color-shade: var(--ion-color-main-bg-shade);
+  --ion-color-tint: var(--ion-color-main-bg-tint);
+}
+
 
 
 /** Ionic CSS Variables **/

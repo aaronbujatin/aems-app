@@ -1,4 +1,5 @@
-import { Component, ViewChild  } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 @Component({
@@ -8,7 +9,29 @@ import { OverlayEventDetail } from '@ionic/core/components';
 })
 export class Tab2Page {
 
-  constructor() { }
+  constructor(private formBuilder : FormBuilder) { 
+   
+  }
+
+
+  ngOnInit() {
+   
+  }
+
+  formData = this.formBuilder.group({
+    todo : ['', Validators.required],
+    location : ['', Validators.required],
+  })
+
+  onSubmit() {
+    console.log(this.formData.value);
+  
+
+  }
+  buttonClick(){
+    console.log("Button clicked");
+    
+  }
 
   @ViewChild(IonModal) modal: IonModal;
 
@@ -29,5 +52,10 @@ export class Tab2Page {
       this.message = `Hello, ${ev.detail.data}!`;
     }
   }
+
+
+
+
+
 
 }
