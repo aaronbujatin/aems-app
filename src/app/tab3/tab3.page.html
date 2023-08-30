@@ -12,6 +12,9 @@
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-datetime id="time" presentation="time" [(ngModel)]="time" hourCycle="h12"
+  displayFormat="hh:mm a"></ion-datetime>
 
+  <p>{{time | date : "shortTime"}}</p>
  
 </ion-content>

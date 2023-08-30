@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { CustomTimeFormatPipe } from '../custom-time-format.pipe';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     Tab2PageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page, CustomTimeFormatPipe]
 })
-export class Tab2PageModule {}
+export class Tab2PageModule { }
