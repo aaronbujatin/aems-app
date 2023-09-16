@@ -1,55 +1,37 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
-:root {
-  --ion-color-main: #E8AAAD;
-  --ion-color-main-rgb: 232, 170, 173;
-  --ion-color-main-contrast: #000000;
-  --ion-color-main-contrast-rgb: 0, 0, 0;
-  --ion-color-main-shade: #cc9698;
-  --ion-color-main-tint: #eab3b5;
-}
 
-.ion-color-main {
-  --ion-color-base: var(--ion-color-main);
-  --ion-color-base-rgb: var(--ion-color-main-rgb);
-  --ion-color-contrast: var(--ion-color-main-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-main-contrast-rgb);
-  --ion-color-shade: var(--ion-color-main-shade);
-  --ion-color-tint: var(--ion-color-main-tint);
-}
 
 :root {
-  --ion-color-main-bg: #F2F2F2;
-  --ion-color-main-bg-rgb: 242, 242, 242;
-  --ion-color-main-bg-contrast: #000000;
-  --ion-color-main-bg-contrast-rgb: 0, 0, 0;
-  --ion-color-main-bg-shade: #d5d5d5;
-  --ion-color-main-bg-tint: #f3f3f3;
+  --ion-color-pink: #FCA5A5;
+  --ion-color-pink-rgb: 252, 165, 165;
+  --ion-color-pink-contrast: #000000;
+  --ion-color-pink-contrast-rgb: 0, 0, 0;
+  --ion-color-pink-shade: #de9191;
+  --ion-color-pink-tint: #fcaeae;
 }
 
-.ion-color-main-bg {
-  --ion-color-base: var(--ion-color-main-bg);
-  --ion-color-base-rgb: var(--ion-color-main-bg-rgb);
-  --ion-color-contrast: var(--ion-color-main-bg-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-main-bg-contrast-rgb);
-  --ion-color-shade: var(--ion-color-main-bg-shade);
-  --ion-color-tint: var(--ion-color-main-bg-tint);
+.ion-color-pink {
+  --ion-color-base: var(--ion-color-pink);
+  --ion-color-base-rgb: var(--ion-color-pink-rgb);
+  --ion-color-contrast: var(--ion-color-pink-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-pink-contrast-rgb);
+  --ion-color-shade: var(--ion-color-pink-shade);
+  --ion-color-tint: var(--ion-color-pink-tint);
 }
-
-
 
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
 
 
-  --ion-color-primary: #E8AAAD;
-  --ion-color-primary-rgb: 232, 170, 173;
-  --ion-color-primary-contrast: #000000;
-  --ion-color-primary-contrast-rgb: 0, 0, 0;
-  --ion-color-primary-shade: #cc9698;
-  --ion-color-primary-tint: #eab3b5;
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;

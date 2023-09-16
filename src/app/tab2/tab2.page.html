@@ -19,7 +19,7 @@
         </ion-row>
         <ion-row class="card-row">
           <ion-col size="4"><ion-icon name="location-outline"></ion-icon>{{planner.location}}</ion-col>
-          <ion-col size="5"><ion-icon name="calendar-outline"></ion-icon> {{planner.date}}</ion-col>
+          <ion-col size="5"><ion-icon name="calendar-outline"></ion-icon> {{planner.date | date : 'mediumDate'}}</ion-col>
           <ion-col size="3"><ion-icon name="time-outline"></ion-icon> {{planner.time | customTimeFormat }}</ion-col>
 
         </ion-row>
@@ -50,11 +50,12 @@
         </ion-toolbar>
         <form [formGroup]="formData" (ngSubmit)="onSubmit()">
           <ion-list>
-            <ion-input label="What do you need to do?" label-placement="floating" formControlName="todo" fill="outline"
+            <ion-input label="What do you need to do?" label-placement="floating" errorText="To do message is required" formControlName="message" fill="outline"
               placeholder="Enter text"></ion-input>
+             
           </ion-list>
           <ion-list>
-            <ion-input label="Where is the location?" label-placement="floating" formControlName="location"
+            <ion-input label="Where is the location?" errorText="Location is required" label-placement="floating" formControlName="location"
               fill="outline" placeholder="Enter text"></ion-input>
           </ion-list>
 
@@ -71,9 +72,6 @@
               <ion-datetime-button datetime="time" slot="end"></ion-datetime-button>
             </ion-item>
           </ion-list>
-
-
-
           <!-- MODAL FOR DATE AND TIME -->
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
@@ -87,13 +85,8 @@
                 displayFormat="hh:mm a"></ion-datetime>
             </ng-template>
           </ion-modal>
-
-
           <ion-button type="submit" expand="block" color="primary">Submit</ion-button>
-
         </form>
-
-
       </ion-content>
     </ng-template>
   </ion-modal>

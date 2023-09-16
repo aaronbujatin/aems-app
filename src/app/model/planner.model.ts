@@ -6,5 +6,4 @@ export class Planner {
     date : string
     time : string
 
-
 }

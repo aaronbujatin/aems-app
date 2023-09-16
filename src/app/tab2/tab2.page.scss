@@ -19,11 +19,20 @@ ion-card {
 
 .my-list {
     margin-top: -20px;
+
+    .card-row {
+        font-weight: 500;
+
+        ion-icon {
+            --padding-top: 30px;
+        }
+    }
 }
 
 ion-content {
     --background: rgb(246, 80, 160);
     --background: linear-gradient(142deg, rgba(255, 91, 107, 1) 0%, rgba(246, 80, 160, 1) 24%, rgba(232, 170, 173, 1) 100%);
+    --padding-bottom: 50px;
 }
 
 ion-list {
@@ -39,12 +48,6 @@ ion-title {
     color: black;
 }
 
-.card-row {
-    font-weight: 500;
-
-    ion-icon {
-        padding-top: 2px;
-    }
+ion-modal {
+    --ion-background-color: #ffffff !important;
 }
-
-

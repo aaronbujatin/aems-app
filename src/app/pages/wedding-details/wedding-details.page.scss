@@ -1,0 +1,17 @@
+.vertical-center-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-lowercase {
+    color: white;
+    text-transform: none;
+}
+
+.custom-button-text {
+    color: white;
+    /* Set the text color to white */
+}

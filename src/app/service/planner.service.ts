@@ -15,5 +15,9 @@ export class PlannerService {
     return this.httpClient.get(`${this.API_URL}/api/v1/planner`);
   }
 
+  public savePlanner(planner){
+    return this.httpClient.post(`${this.API_URL}/api/v1/planner`, planner)
+  }
+
 
 }

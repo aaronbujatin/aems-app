@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ToastController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonDatetime } from '@ionic/angular';
 import { PlannerService } from '../service/planner.service';
@@ -13,7 +13,7 @@ import { CustomTimeFormatPipe } from '../custom-time-format.pipe';
 })
 export class Tab2Page {
 
-  constructor(private formBuilder: FormBuilder, private plannerService: PlannerService) {
+  constructor(private formBuilder: FormBuilder, private plannerService: PlannerService, private toastController: ToastController) {
 
   }
   ngOnInit() {
@@ -23,29 +23,56 @@ export class Tab2Page {
 
   }
 
+  async presentToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Task successfully added',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
+  async errorInputToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Please provide proper input',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
   date: string = ''
   time: string = ''
 
   formData = this.formBuilder.group({
-    todo: ['', Validators.required],
+    message: ['', Validators.required],
     location: ['', Validators.required],
     date: [''],
     time: [''],
   })
 
   onSubmit() {
-    console.log(this.formData.value);
-
-    const selectedDate = this.formData.get('date').value;
-    const selectedTime = this.formData.get('time').value;
-
-    console.log(selectedDate + " " + selectedTime);
-
+    const planner = this.formData.value
+    if(planner.date === null && planner.time === null){
+      this.errorInputToast('bottom');
+    }else {
+      this.plannerService.savePlanner(planner).subscribe(
+        (response) => {
+          this.ngOnInit()
+          this.formData.reset()
+          this.presentToast('bottom')
+          this.cancel()
+          console.log(response);
+        }
+      ), (error) => {
+        console.log(error);
+      }
+    }
   }
-  buttonClick() {
-    console.log("Button clicked");
 
-  }
+
 
 
 
@@ -96,10 +123,6 @@ export class Tab2Page {
     this.formData.get('date').setValue(this.date);
     console.log(this.date);
   }
-
-  staticTime = "14:30"
-
-
 
 
 }

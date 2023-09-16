@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>To be process</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="light">
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let booking of bookings">
+        <ion-label *ngIf="booking.status === 'To be process'">{{ booking.vendorType }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
