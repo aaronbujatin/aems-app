@@ -11,17 +11,21 @@
     <div class="ion-text-center">
       <p>Choose an action:</p>
     </div>
-
     <ion-row class="ion-padding">
       <ion-col size="12">
-        <ion-button expand="full" color="pink" class="button-lowercase custom-button-text" style="color:whites" routerLink="/to-be-processed">To be
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="/to-be-processed">
+          <ion-icon slot="start" name="settings-outline"></ion-icon> To be
           Processed</ion-button>
       </ion-col>
       <ion-col size="12">
-        <ion-button expand="full" color="pink" class="button-lowercase custom-button-text">Completed</ion-button>
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"><ion-icon
+            slot="start" name="checkmark-circle-outline"></ion-icon>Completed</ion-button>
       </ion-col>
       <ion-col size="12">
-        <ion-button expand="full" color="pink" class="button-lowercase custom-button-text">Manage Vendors</ion-button>
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="/manage-vendors"><ion-icon slot="start" name="reader-outline"></ion-icon>Manage
+          Vendors</ion-button>
       </ion-col>
     </ion-row>
   </div>

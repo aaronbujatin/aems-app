@@ -25,6 +25,18 @@ const routes: Routes = [
   {
     path: 'manage-vendors',
     loadChildren: () => import('./pages/manage-vendors/manage-vendors.module').then( m => m.ManageVendorsPageModule)
+  },
+  {
+    path: 'officiant',
+    loadChildren: () => import('./pages/officiant/officiant.module').then( m => m.OfficiantPageModule)
+  },
+  {
+    path: 'caterer',
+    loadChildren: () => import('./pages/caterer/caterer.module').then( m => m.CatererPageModule)
+  },
+  {
+    path: 'lovely',
+    loadChildren: () => import('./pages/lovely/lovely.module').then( m => m.LovelyPageModule)
   }
   
 ];

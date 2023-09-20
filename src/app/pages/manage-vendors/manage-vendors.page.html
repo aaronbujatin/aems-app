@@ -1,13 +1,64 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>manage-vendors</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Manage vendors</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">manage-vendors</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="vertical-center-container">
+    <div class="ion-text-center">
+      <p class="bold-header">Choose a vendor:</p>
+    </div>
+    <ion-row class="ion-padding">
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="">Officiant</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn">Caterer</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="/manage-vendors">Tables and chairs</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="">Photographer</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round"
+          class="button-lowercase custom-button-text testBtn">Videographer</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="/manage-vendors">Cake baker</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="">Stationer</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn">Lights and
+          Sounds</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="/manage-vendors">Musicians</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn" routerLink="">Bridal
+          car</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn">Florist</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
+          routerLink="/manage-vendors">Makeup Artist</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

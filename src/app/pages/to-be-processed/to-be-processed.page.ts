@@ -8,20 +8,24 @@ import { Booking } from 'src/app/model/booking.model';
 })
 export class ToBeProcessedPage implements OnInit {
 
-  constructor() { }
+  constructor() {
+    this.filteredBookings = this.bookings.filter(booking => booking.status === 'To be process');
+   }
 
   ngOnInit() {
   }
 
+  filteredBookings: any[];
+
   bookings : Booking[] = [
     {
       id : 1, 
-      status: "Tobeprocess",
+      status: "To be process",
       vendorType : "Videographer"
     },
     {
       id : 2, 
-      status: "Tobeprocess",
+      status: "To be process",
       vendorType : "Photographer"
     },
     {
@@ -41,7 +45,7 @@ export class ToBeProcessedPage implements OnInit {
     },
     {
       id : 6, 
-      status: "Tobeprocess",
+      status: "To be process",
       vendorType : "Gown"
     }
 
