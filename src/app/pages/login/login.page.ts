@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthenticationServiceService } from 'src/app/service/authentication-service.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class LoginPage implements OnInit {
 
   constructor(private alertController: AlertController,
      private authenticationService : AuthenticationServiceService,
-     private router : Router) { }
+     private router : Router,
+     private loadingController: LoadingController) { }
 
   ngOnInit() {
   }
@@ -36,16 +37,38 @@ export class LoginPage implements OnInit {
   }
 
   login(){
+    // this.authenticationService.login(this.username, this.password).subscribe(
+    //   (response) => {
+    //     this.router.navigate(["/tabs"])
+    //     console.log(response);  
+    //   }, (error) => {
+    //     this.presentAlert()
+    //     console.log(error);
+        
+    //   }
+    // )
+  }
+
+  async loginBtn() {
+    const loading = await this.loadingController.create({
+      message: 'Logging in...',
+      spinner: 'bubbles', // You can change the spinner type here
+    });
+    await loading.present();
+
     this.authenticationService.login(this.username, this.password).subscribe(
       (response) => {
         this.router.navigate(["/tabs"])
-        console.log(response);  
-      }, (error) => {
+        console.log(response); 
+        loading.dismiss();
+      },
+      (error) => {
+  
+        console.error('Login failed', error);
+        loading.dismiss();
         this.presentAlert()
-        console.log(error);
-        
       }
-    )
+    );
   }
 
 

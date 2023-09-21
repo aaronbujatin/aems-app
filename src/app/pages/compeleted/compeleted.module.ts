@@ -17,4 +17,4 @@ import { CompeletedPage } from './compeleted.page';
   ],
   declarations: [CompeletedPage]
 })
-export class CompeletedPageModule {}
+export class CompeletedPageModule { }

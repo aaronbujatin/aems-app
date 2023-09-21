@@ -17,4 +17,4 @@ import { LovelyPage } from './lovely.page';
   ],
   declarations: [LovelyPage]
 })
-export class LovelyPageModule {}
+export class LovelyPageModule { }
