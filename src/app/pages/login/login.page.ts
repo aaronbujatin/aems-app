@@ -20,39 +20,20 @@ export class LoginPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-  
       subHeader: 'Wrong credentials',
       message: 'Invalid username or password',
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 
   username : string
   password : string
 
-  buttonClick(){
-    this.presentAlert()
-  }
-
-  login(){
-    // this.authenticationService.login(this.username, this.password).subscribe(
-    //   (response) => {
-    //     this.router.navigate(["/tabs"])
-    //     console.log(response);  
-    //   }, (error) => {
-    //     this.presentAlert()
-    //     console.log(error);
-        
-    //   }
-    // )
-  }
-
   async loginBtn() {
     const loading = await this.loadingController.create({
       message: 'Logging in...',
-      spinner: 'bubbles', // You can change the spinner type here
+      spinner: 'crescent', // You can change the spinner type here
     });
     await loading.present();
 
@@ -63,15 +44,11 @@ export class LoginPage implements OnInit {
         loading.dismiss();
       },
       (error) => {
-  
         console.error('Login failed', error);
         loading.dismiss();
         this.presentAlert()
       }
     );
   }
-
-
-
 
 }

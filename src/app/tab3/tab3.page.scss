@@ -1,0 +1,46 @@
+.view-detail {
+    font-size: small;
+    text-transform: initial;
+}
+
+ion-card {
+    background: rgba(255, 87, 87);
+    background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 87, 87)), color-stop(100%, rgba(140, 82, 255)));
+    background: -webkit-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: -o-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: -ms-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: linear-gradient(to right, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed2400, endColorstr=#006333, GradientType=1);
+    padding: 0;
+    box-shadow: none;
+    --border-radius: 14px;
+    color: white;
+    font-weight: 600;
+}
+
+.header-main {
+    font-weight: 600;
+    color: #fca5a5;
+}
+
+ion-title {
+    &.md {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        height: 0;
+        text-align: center;
+    }
+}
+
+.color-bg::part(native) {
+    background: rgba(255, 87, 87);
+    background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 87, 87)), color-stop(100%, rgba(140, 82, 255)));
+    background: -webkit-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: -o-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: -ms-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    background: linear-gradient(to right, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed2400, endColorstr=#006333, GradientType=1);
+}

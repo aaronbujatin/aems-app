@@ -37,7 +37,12 @@ const routes: Routes = [
   {
     path: 'lovely',
     loadChildren: () => import('./pages/lovely/lovely.module').then( m => m.LovelyPageModule)
-  }
+  },
+  {
+    path: 'vendor-details',
+    loadChildren: () => import('./pages/vendor-details/vendor-details.module').then( m => m.VendorDetailsPageModule)
+  },
+  
   
 ];
 @NgModule({

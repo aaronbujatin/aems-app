@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-datetime id="time" presentation="time" [(ngModel)]="time" hourCycle="h12"
-  displayFormat="hh:mm a"></ion-datetime>
+  <ion-toolbar>
+    <ion-title>Vendors</ion-title>
+  </ion-toolbar>
+  <ion-list class="ion-no-padding">
+    <ion-card class="ion-no-border">
+      <ion-card-content>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="8">
+            <ion-label>
+              Photographer
+            </ion-label>
+          </ion-col>
+          <ion-col size="4" class="ion-text-right">
+            <ion-button color="translucent" color="light" fill="clear" routerLink="/vendor-details">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 
-  <p>{{time | date : "shortTime"}}</p>
- 
 </ion-content>
