@@ -15,14 +15,34 @@ ion-card {
     padding: 0;
     box-shadow: none;
     --border-radius: 14px;
+}
+
+.label-title {
     color: white;
     font-weight: 600;
+    
+}
+
+.label-subtitle {
+    color: white;
+    font-weight: 400;
 }
 
 .header-main {
 
     font-weight: 600;
     color: #fca5a5;
+}
+
+.truncate-text {
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    overflow: hidden;
+    /* Hide the overflowing text */
+    text-overflow: ellipsis;
+    /* Display ellipsis (...) for overflowed text */
+    max-width: 10%;
+    /* Adjust the max-width as needed */
 }
 
 ion-title {
