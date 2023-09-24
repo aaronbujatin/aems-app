@@ -39,7 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/lovely/lovely.module').then( m => m.LovelyPageModule)
   },
   {
-    path: 'vendor-details',
+    path: 'vendor-details/:id',
     loadChildren: () => import('./pages/vendor-details/vendor-details.module').then( m => m.VendorDetailsPageModule)
   },
   

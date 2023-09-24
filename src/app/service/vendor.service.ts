@@ -15,5 +15,9 @@ export class VendorService {
     return this.httpClient.get(`${this.API_URL}/api/v1/vendors`)
   }
 
+  getVendorById(id:string){
+    return this.httpClient.get(`${this.API_URL}/api/v1/vendors/${id}`)
+  }
+
 
 }
