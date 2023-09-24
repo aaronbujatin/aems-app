@@ -1,7 +1,4 @@
-.view-detail {
-    font-size: small;
-    text-transform: initial;
-}
+
 
 ion-card {
     background: rgba(255, 87, 87);
@@ -18,21 +15,22 @@ ion-card {
 }
 
 
-.label-title {
-    color: white;
-    font-weight: 600;
+.item-container {
+    --ion-item-detail-color: white !important; 
+
+    .label-container {
+        color: white;
+
+        .label-title {
+            font-weight: 600;
+        }
+
+        .label-subtitle {
+            font-weight: 600;
+        }
+    }
 }
 
-.label-subtitle {
-    color: white;
-    font-weight: 400;
-}
-
-
-.header-main {
-    font-weight: 600;
-    color: #fca5a5;
-}
 
 ion-title {
     &.md {

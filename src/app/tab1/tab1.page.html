@@ -1,29 +1,18 @@
-<ion-content class="">
+<ion-content [fullscreen]="true">
   <ion-toolbar>
     <ion-title>Events</ion-title>
   </ion-toolbar>
   <ion-list class="ion-no-padding">
-    <ion-card class="ion-no-border">
+    <ion-card class="ion-no-border ion-no-padding">
       <ion-card-content>
-        <ion-row class="ion-align-items-center">
-          <ion-col size="8">
-            <ion-label class="label-title">
-              Event name : Entertainment District
-            </ion-label>
-            <br>
-            <ion-label class="label-subtitle ion-no-padding">
-              Client name : Angelina Cruz
-            </ion-label>
-          </ion-col>
-          <ion-col size="4" class="ion-text-right">
-            <ion-button color="translucent" color="light" fill="clear" routerLink="/wedding-details">
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
+        <ion-item lines="none" color="none"  class="ion-no-padding item-container">
+          <ion-label class="label-container">
+            <h2><span class="label-title">Event name : </span> Superman</h2>
+            <p><span class="label-subtitle">Client name : </span>Isabelle Cruz</p>
+          </ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end" color="light" routerLink="/wedding-details"></ion-icon>
+        </ion-item>
       </ion-card-content>
     </ion-card>
   </ion-list>
-
-
 </ion-content>

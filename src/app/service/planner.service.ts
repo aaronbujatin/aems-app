@@ -8,7 +8,7 @@ export class PlannerService {
 
   private API_URL = environment.baseUrl
 
-
+  private baseUrl = "http://localhost:8080"
   constructor(private httpClient : HttpClient) { }
 
   getAllPlanner() {

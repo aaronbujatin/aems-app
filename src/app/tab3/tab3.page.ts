@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VendorService } from '../service/vendor.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,7 +8,19 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private vendorService : VendorService) {}
+
+  ngOnInit(){
+    this.vendorService.getAllVendor().subscribe(
+      (response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+        
+      }
+    )
+  }
+
 
   time : string
 

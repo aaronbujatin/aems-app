@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BookingService } from './../service/booking.service';
+import { Booking } from '../model/booking.model';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,20 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() { }
+  constructor(private bookingService : BookingService) { }
+
+  bookings : Booking[]
+
+  ngOnInit(){
+    this.bookingService.getAllBooking().subscribe(
+      (response : Booking[]) => {
+        this.bookings = response
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
 
 }

@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  baseUrl : "https://wedding-event-production.up.railway.app",
+  baseUrl : "https://be-aems-production.up.railway.app",
   production: false
 };
 
