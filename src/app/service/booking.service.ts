@@ -16,4 +16,8 @@ export class BookingService {
     return this.httpClient.get(`${this.API_URL}/api/v1/bookings`)
   }
 
+  public getBookingById(id : string){
+    return this.httpClient.get(`${this.API_URL}/api/v1/bookings/${id}`)
+  }
+
 }

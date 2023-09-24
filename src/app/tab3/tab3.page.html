@@ -3,14 +3,14 @@
     <ion-title>Vendors</ion-title>
   </ion-toolbar>
   <ion-list class="ion-no-padding" *ngFor="let vendor of vendors">
-    <ion-card class="ion-no-border ion-no-padding" [routerLink]="['/vendor-details', vendor.id]"> 
+    <ion-card class="ion-no-border ion-no-padding" > 
       <ion-card-content>
         <ion-item lines="none" color="none"  class="ion-no-padding item-container">
           <ion-label class="label-container">
             <h2><span class="label-title">Event name : </span> {{vendor.eventNameReference}}</h2>
             <p><span class="label-subtitle">Vendor type : </span>{{vendor.vendorType}}</p>
           </ion-label>
-          <ion-icon name="chevron-forward-outline" slot="end" color="light" routerLink="/vendor-details"></ion-icon>
+          <ion-icon name="chevron-forward-outline" slot="end" color="light" [routerLink]="['/vendor-details', vendor.id]"></ion-icon>
         </ion-item>
       </ion-card-content>
     </ion-card>

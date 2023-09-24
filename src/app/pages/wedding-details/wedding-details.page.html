@@ -33,93 +33,82 @@
   <ion-card class="color-bg">
     <img alt="Silhouette of mountains" src="assets/icon/details-logo.png" />
     <ion-card-header>
-      <ion-card-title>Event name : Darna & Gagamboy's Wedding</ion-card-title>
-      <ion-card-subtitle>Theme style : Modern Filipiniana</ion-card-subtitle>
+      <ion-card-title>Event name : {{booking.eventName}}</ion-card-title>
+      <ion-card-subtitle>Theme style : {{booking.themeStyle}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content scroll-y="false">
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Address :</span> Athens st. Pinagbarilan, Baliuag, Bulacan
+        <span class="bold-text"> Address :</span> {{booking.address}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Booking status : </span> Athens st. Pinagbarilan, Baliuag, Bulacan
+        <span class="bold-text"> Booking status : </span> {{booking.bookingStatus}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Booking soruce :</span> Athens st. Pinagbarilan, Baliuag, Bulacan
+        <span class="bold-text"> Booking source :</span> {{booking.bookingSource}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Client name :</span> test
+        <span class="bold-text"> Client name :</span> {{booking.clientName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Client contact no. :</span> test
+        <span class="bold-text"> Client contact no. :</span> {{booking.clientContactNumber}}
+      </ion-label>
+     
+      <br>
+      <ion-label class="ion-text-wrap">
+        <span class="bold-text"> Email :</span> {{booking.email}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Client contact no. :</span> test
+        <span class="bold-text">Weeding date :</span> {{booking.weddingDate | date : 'longDate'}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Email :</span> test
+        <span class="bold-text">Wedding type :</span> {{booking.weddingType}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Address :</span> test
+        <span class="bold-text">Ceremony venue :</span> {{booking.ceremonyVenue}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Weeding date :</span> test
+        <span class="bold-text">Reception venue :</span> {{booking.receptionVenue}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Wedding type :</span> test
+        <span class="bold-text">Expected guest number:</span> {{booking.expectedGuestNumber}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Theme style :</span> test
+        <span class="bold-text">Groom name :</span> {{booking.groomName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Ceremony venue :</span> test
+        <span class="bold-text">Groom contact number :</span> {{booking.groomContactNumber}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Reception venue :</span> test
+        <span class="bold-text">bride name :</span> {{booking.brideName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Expected guest number:</span> test
+        <span class="bold-text">Bride contact number :</span> {{booking.brideContactNumber}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Groom name :</span> test
+        <span class="bold-text">Payment method :</span> {{booking.paymentMethod}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Groom contact number :</span> test
+        <span class="bold-text">Selectd package :</span> {{booking.selectedPackage}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">bride name :</span> test
-      </ion-label>
-      <br>
-      <ion-label class="ion-text-wrap">
-        <span class="bold-text">Bride contact number :</span> test
-      </ion-label>
-      <br>
-      <ion-label class="ion-text-wrap">
-        <span class="bold-text">Payment method :</span> test
-      </ion-label>
-      <br>
-      <ion-label class="ion-text-wrap">
-        <span class="bold-text">Selectd package :</span> test
-      </ion-label>
-      <br>
-      <ion-label class="ion-text-wrap">
-        <span class="bold-text">Amount paid :</span> test
+        <span class="bold-text">Amount paid :</span> {{booking.amountPaid | currency : "Php"}}
       </ion-label>
     </ion-card-content>
   </ion-card>

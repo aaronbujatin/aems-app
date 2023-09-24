@@ -22,6 +22,7 @@ export class VendorDetailsPage implements OnInit {
   public getVendorById(id : string) {
     this.vendorService.getVendorById(id).subscribe(
       (response : Vendor) => {
+        this.vendor = response
         console.log(response);
       }, (error) => {
         console.log(error);
