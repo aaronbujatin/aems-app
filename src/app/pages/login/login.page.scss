@@ -1,12 +1,36 @@
-ion-content {
-    --background: var(--ion-color-primary);
-    
-}
-
 ion-button {
+    --background: rgba(255, 87, 87);
+    --background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 87, 87)), color-stop(100%, rgba(140, 82, 255)));
+    --background: -webkit-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -o-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -ms-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: linear-gradient(to right, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed2400, endColorstr=#006333, GradientType=1);
+    padding: 0;
+    box-shadow: none;
+    --border-radius: 14px;
     color: white;
     font-weight: bold;
     text-transform: initial;
+}
+
+ion-content {
+    --background: rgba(255, 87, 87);
+    --background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 87, 87)), color-stop(100%, rgba(140, 82, 255)));
+    --background: -webkit-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -o-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -ms-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: linear-gradient(to right, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed2400, endColorstr=#006333, GradientType=1);
+    padding: 0;
+    box-shadow: none;
+
+}
+
+ion-card {
+    --background: #f9f9f9;
 }
 
 ion-card-header {
@@ -18,9 +42,16 @@ ion-card-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Adjust this for spacing */
+    margin-top: 20px;
+
+    /* Adjust this for spacing */
     .centered-image {
         height: 120px;
         width: 200px;
     }
+}
+
+ion-item {
+    --background: #3880ff;
+    --color: #fff;
 }
