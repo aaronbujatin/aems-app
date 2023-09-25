@@ -51,17 +51,21 @@
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
+        <span class="bold-text"> Booking date :</span> {{booking.bookingDate | date: 'longDate'}}
+      </ion-label>
+      <br>
+      <ion-label class="ion-text-wrap">
         <span class="bold-text"> Client name :</span> {{booking.clientName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
         <span class="bold-text"> Client contact no. :</span> {{booking.clientContactNumber}}
       </ion-label>
-     
       <br>
       <ion-label class="ion-text-wrap">
         <span class="bold-text"> Email :</span> {{booking.email}}
       </ion-label>
+      
       <br>
       <ion-label class="ion-text-wrap">
         <span class="bold-text">Weeding date :</span> {{booking.weddingDate | date : 'longDate'}}

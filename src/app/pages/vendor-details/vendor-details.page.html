@@ -42,17 +42,27 @@
       <br>
       <ion-label class="ion-text-wrap">
         <ion-icon name="book-outline"></ion-icon>
-        <span class="bold-text"> Contract signed:</span> test
+        <span class="bold-text"> Contract signed:</span> {{vendor.contractSigned | date : 'longDate'}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
         <ion-icon name="calendar-outline"></ion-icon>
-        <span class="bold-text"> Contract expires :</span> test
+        <span class="bold-text"> Contract expires :</span> {{vendor.contractExpired | date : 'longDate' }}
+      </ion-label>
+      <br>
+      <ion-label class="ion-text-wrap">
+        <ion-icon name="location-outline"></ion-icon>
+        <span class="bold-text"> Address line :</span> {{vendor.emailAddressLine }}
+      </ion-label>
+      <br>
+      <ion-label class="ion-text-wrap">
+        <ion-icon name="wallet-outline"></ion-icon>
+        <span class="bold-text"> Payment status :</span> {{vendor.paymentStatus }}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
         <ion-icon name="cash-outline"></ion-icon>
-        <span class="bold-text"> Final cost :</span> {{vendor.finalCost}}
+        <span class="bold-text"> Final cost :</span> {{vendor.finalCost | currency : 'Php '}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
