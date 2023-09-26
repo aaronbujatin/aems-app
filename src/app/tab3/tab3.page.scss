@@ -26,6 +26,10 @@ ion-content {
     background-color: white !important;
 }
 
+ion-text {
+    font-size: 12px;
+}
+
 ion-button.colored-button {
     margin-top: 20px;
     --background: rgba(255, 87, 87);

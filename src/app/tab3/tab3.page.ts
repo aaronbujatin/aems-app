@@ -3,26 +3,23 @@ import { VendorService } from '../service/vendor.service';
 import { Vendor } from '../model/vendor.model';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';;
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';;
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  ionicForm: any;
-  submitForm() {
-    throw new Error('Method not implemented.');
-  }
-
+ 
   constructor(private vendorService: VendorService, private formBuilder: FormBuilder) { }
 
 
-  vendorForm: FormGroup
+  vendorForm: FormGroup; 
   vendors: Vendor[];
 
   ngOnInit() {
     this.getAllVendors();
+    this.initForm();
   }
 
   public initForm() {
@@ -32,7 +29,7 @@ export class Tab3Page {
       companyName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),],],
       regionCityZip: ['', [Validators.required]],
-      contact: ['', [Validators.required], Validators.pattern('^[0-9]+$')],
+      contact: ['', [Validators.required], this.asyncPatternValidator],
       website: ['', [Validators.required]],
       contractSigned: ['', [Validators.required]],
       contractExpired: ['', [Validators.required]],
@@ -43,8 +40,18 @@ export class Tab3Page {
     })
   }
 
+  asyncPatternValidator(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> {
+    const pattern = /^[0-9]+$/;
+    if (control.value && !pattern.test(control.value)) {
+      return Promise.resolve({ patternInvalid: true });
+    }
+    return Promise.resolve(null);
+  }
+
   get errorControl() {
-    return this.ionicForm.controls;
+    return this.vendorForm.controls;
   }
 
   public getAllVendors() {
@@ -86,10 +93,17 @@ export class Tab3Page {
     {
       "id": 2, "name": "Naruto Shippuden"
     },
-    {
-      "id": 3, "name": "Bluelock"
-    }
+
   ]
+
+  submitForm = () => {
+    if (this.vendorForm.valid) {
+      console.log(this.vendorForm.value);
+      return false;
+    } else {
+      return console.log('Please provide all the required values!');
+    }
+  };
 
 
 
