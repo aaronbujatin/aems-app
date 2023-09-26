@@ -1,5 +1,3 @@
-
-
 ion-card {
     background: rgba(255, 87, 87);
     background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
@@ -18,6 +16,35 @@ ion-card {
     text-transform: capitalize;
 }
 
+ion-input.has-focus {
+    --border-color: rgb(63, 94, 251);
+    --border-color: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 252, 1) 100%);
+
+}
+
+ion-content {
+    background-color: white !important;
+}
+
+ion-button.colored-button {
+    margin-top: 20px;
+    --background: rgba(255, 87, 87);
+    --background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 87, 87)), color-stop(100%, rgba(140, 82, 255)));
+    --background: -webkit-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -o-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: -ms-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    --background: linear-gradient(to right, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed2400, endColorstr=#006333, GradientType=1);
+    padding: 0;
+    box-shadow: none;
+    --border-radius: 14px;
+    color: white;
+    font-weight: bold;
+    text-transform: initial;
+}
+
+
 ion-fab-button {
     --background: rgba(255, 87, 87);
     --background: -moz-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
@@ -33,7 +60,7 @@ ion-fab-button {
 }
 
 .item-container {
-    --ion-item-detail-color: white !important; 
+    --ion-item-detail-color: white !important;
 
     .label-container {
         color: white;

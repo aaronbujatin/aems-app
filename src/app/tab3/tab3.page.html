@@ -3,21 +3,24 @@
     <ion-title>Vendors</ion-title>
   </ion-toolbar>
   <ion-list class="ion-no-padding" *ngFor="let vendor of vendors">
-    <ion-card class="ion-no-border ion-no-padding" > 
+    <ion-card class="ion-no-border ion-no-padding">
       <ion-card-content>
-        <ion-item lines="none" color="none"  class="ion-no-padding item-container">
+        <ion-item lines="none" color="none" class="ion-no-padding item-container">
           <ion-label class="label-container">
             <h2><span class="label-title">Event name : </span> {{vendor.eventNameReference}}</h2>
-            <p><span class="label-subtitle">Vendor type : </span><span class="vendor-type">{{vendor.vendorType}}</span></p>
+            <p><span class="label-subtitle">Vendor type : </span><span class="vendor-type">{{vendor.vendorType}}</span>
+            </p>
           </ion-label>
-          <ion-icon name="chevron-forward-outline" slot="end" color="light" [routerLink]="['/vendor-details', vendor.id]"></ion-icon>
+          <ion-icon name="chevron-forward-outline" slot="end" color="light"
+            [routerLink]="['/vendor-details', vendor.id]"></ion-icon>
         </ion-item>
       </ion-card-content>
     </ion-card>
-    
+
   </ion-list>
+
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button id="open-modal"  id="open-modal">
+    <ion-fab-button id="open-modal" id="open-modal">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -28,17 +31,66 @@
           <ion-buttons slot="start">
             <ion-button (click)="cancel()">Cancel</ion-button>
           </ion-buttons>
-        
-          <ion-buttons slot="end">
+
+          <!-- <ion-buttons slot="end">
             <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-          </ion-buttons>
+          </ion-buttons> -->
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <ion-item>
-          <ion-label position="stacked">Enter your name</ion-label>
-          <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input>
-        </ion-item>
+        <form [formGroup]="vendorForm" (ngSubmit)="submitForm()">
+          <h4>Add new vendor:</h4>
+          <ion-select formControlName="eventNameReference" label="Event name reference" label-placement="floating"
+            fill="outline">
+            <ion-select-option *ngFor="let event of events" [value]="event.name">{{event.name}}</ion-select-option>
+          </ion-select>
+          <br>
+          <ion-input label="Vendor type" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+
+          <ion-input label="Company name" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input formControlName="email" label="Email" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <div *ngIf="this.ionicForm.controls?.email.touched && this.ionicForm.controls?.email.invalid">
+            <div class="error ion-padding" *ngIf="errorControl.email.errors?.required">
+              <ion-text color="danger">Email is required.</ion-text>
+            </div>
+            <div class="ion-padding" *ngIf="errorControl.email.errors?.pattern">
+              <ion-text color="danger">Please provide valid email.</ion-text>
+            </div>
+          </div>
+          <br>
+          <ion-input label="Region, City, Zip" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Contact #" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Website" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Contract signed" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Contract expired" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Addres line" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Payment status" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Final cost" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <br>
+          <ion-input label="Contreact desciption" label-placement="floating" fill="outline" color="dark"
+            placeholder="Enter text"></ion-input>
+          <ion-button size="full" class="colored-button">Confirm</ion-button>
+        </form>
       </ion-content>
     </ng-template>
   </ion-modal>
