@@ -20,4 +20,12 @@ export class BookingService {
     return this.httpClient.get(`${this.API_URL}/api/v1/bookings/${id}`)
   }
 
+  getAllBookingByOrganizerName(organizerName : string){
+    return this.httpClient.get(`${this.API_URL}/api/v1/bookings/organizer/${organizerName}`);
+  }
+
+  public saveBooking(booking){
+    return this.httpClient.post(`${this.API_URL}/api/v1/bookings`, booking)
+  }
+
 }

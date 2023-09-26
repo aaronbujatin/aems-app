@@ -31,18 +31,14 @@
           <ion-buttons slot="start">
             <ion-button (click)="cancel()">Cancel</ion-button>
           </ion-buttons>
-
-          <!-- <ion-buttons slot="end">
-            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-          </ion-buttons> -->
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <form [formGroup]="vendorForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
           <h4>Add new vendor:</h4>
           <ion-select formControlName="eventNameReference" label="Event name reference" label-placement="floating"
             fill="outline">
-            <ion-select-option *ngFor="let event of events" [value]="event.name">{{event.name}}</ion-select-option>
+            <ion-select-option *ngFor="let booking of bookings" [value]="booking.eventName">{{booking.eventName}}</ion-select-option>
           </ion-select>
           <div
             *ngIf="this.vendorForm.controls['eventNameReference'].touched && this.vendorForm.controls['eventNameReference'].invalid">
@@ -52,16 +48,15 @@
           </div>
           <br>
           <ion-input label="Vendor type" formControlName="vendorType" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text"></ion-input>
+            color="dark" placeholder="Ex. Photographer"></ion-input>
           <div *ngIf="this.vendorForm.controls['vendorType'].touched && this.vendorForm.controls['vendorType'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['vendorType'].errors['required']">
               <ion-text color="danger">Vendor type is required.</ion-text>
             </div>
           </div>
           <br>
-
           <ion-input formControlName="companyName" label="Company name" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text"></ion-input>
+            color="dark" placeholder="Ex. Villsman Capstures"></ion-input>
           <div
             *ngIf="this.vendorForm.controls['companyName'].touched && this.vendorForm.controls['companyName'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['companyName'].errors['required']">
@@ -70,7 +65,7 @@
           </div>
           <br>
           <ion-input formControlName="email" type="email" label="Email" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text"></ion-input>
+            color="dark" placeholder="Ex. example@gmail.com"></ion-input>
           <div *ngIf="this.vendorForm.controls['email'].touched && this.vendorForm.controls['email'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['email'].errors['required']">
               <ion-text color="danger">Email is required.</ion-text>
@@ -81,7 +76,7 @@
           </div>
           <br>
           <ion-input formControlName="regionCityZip" label="Region, City, Zip" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text Ex. Rodriguez, Rizal 1860"></ion-input>
+            color="dark" placeholder="Ex. Rodriguez, Rizal 1860"></ion-input>
           <div
             *ngIf="this.vendorForm.controls['regionCityZip'].touched && this.vendorForm.controls['regionCityZip'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['regionCityZip'].errors['required']">
@@ -90,15 +85,21 @@
           </div>
           <br>
           <ion-input formControlName="contact" label="Contact #" label-placement="floating" fill="outline" color="dark"
-            placeholder="Enter text"></ion-input>
+            placeholder="Ex. 09108863811"></ion-input>
           <div *ngIf="this.vendorForm.controls['contact'].touched && this.vendorForm.controls['contact'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['contact'].errors['required']">
-              <ion-text color="danger">Contract is required.</ion-text>
+              <ion-text color="danger">Contact is required.</ion-text>
+            </div>
+            <div class="ion-no-padding" *ngIf="errorControl['contact'].errors?.['pattern']">
+              <ion-text color="danger">Please provide valid contact number.</ion-text>
+            </div>
+            <div class="ion-no-padding" *ngIf="errorControl['contact'].errors?.['maxlength'] || errorControl['contact'].errors?.['minlength']">
+              <ion-text color="danger">Phone number must be at least 11 numbers</ion-text>
             </div>
           </div>
           <br>
           <ion-input formControlName="website" label="Website" label-placement="floating" fill="outline" color="dark"
-            placeholder="Enter text"></ion-input>
+            placeholder="Ex. samplewebsiteurl.com"></ion-input>
           <div *ngIf="this.vendorForm.controls['website'].touched && this.vendorForm.controls['website'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['website'].errors['required']">
               <ion-text color="danger">Website is required.</ion-text>
@@ -113,7 +114,8 @@
           </ion-item>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime #date (ionChange)=" contractSignedDateChanged(date.value)" id="contractSigned" [showDefaultButtons]="true" presentation="date" display-format="YYYY-MM-DD"></ion-datetime>
+              <ion-datetime #contractSigned (ionChange)=" contractSignedDateChanged(contractSigned.value)" id="contractSigned"
+                [showDefaultButtons]="true" presentation="date" display-format="YYYY-MM-DD"></ion-datetime>
             </ng-template>
           </ion-modal>
           <br>
@@ -124,23 +126,13 @@
           </ion-item>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime #date (ionChange)=" contractExpiredDateChanged(date.value)" id="contractExpired" [showDefaultButtons]="true" presentation="date" display-format="YYYY-MM-DD"></ion-datetime>
+              <ion-datetime #contractExpired (ionChange)=" contractExpiredDateChanged(contractExpired.value)" id="contractExpired"
+                [showDefaultButtons]="true" presentation="date" display-format="YYYY-MM-DD"></ion-datetime>
             </ng-template>
           </ion-modal>
-
-     
-         
-          <!-- <ion-input formControlName="contractExpired" label="Contract expired" label-placement="floating"
-            fill="outline" color="dark" placeholder="Enter text"></ion-input>
-          <div
-            *ngIf="this.vendorForm.controls['contractExpired'].touched && this.vendorForm.controls['contractExpired'].invalid">
-            <div class="error ion-no-padding" *ngIf="errorControl['contractExpired'].errors['required']">
-              <ion-text color="danger">Date of contract end is required.</ion-text>
-            </div>
-          </div> -->
           <br>
           <ion-input formControlName="emailAddressLine" label="Addres line" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text"></ion-input>
+            color="dark" placeholder="Ex. Blk 25 Lot 25 Southville"></ion-input>
           <div
             *ngIf="this.vendorForm.controls['emailAddressLine'].touched && this.vendorForm.controls['emailAddressLine'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['emailAddressLine'].errors['required']">
@@ -149,7 +141,7 @@
           </div>
           <br>
           <ion-input formControlName="paymentStatus" label="Payment status" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text"></ion-input>
+            color="dark" placeholder="Ex. Confirmed"></ion-input>
           <div
             *ngIf="this.vendorForm.controls['paymentStatus'].touched && this.vendorForm.controls['paymentStatus'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['paymentStatus'].errors['required']">
@@ -158,7 +150,7 @@
           </div>
           <br>
           <ion-input formControlName="finalCost" label="Final cost" label-placement="floating" fill="outline"
-            color="dark" placeholder="Enter text"></ion-input>
+            color="dark" placeholder="Ex. 45000"></ion-input>
           <div *ngIf="this.vendorForm.controls['finalCost'].touched && this.vendorForm.controls['finalCost'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['finalCost'].errors['required']">
               <ion-text color="danger">Final cost is required.</ion-text>
@@ -166,7 +158,7 @@
           </div>
           <br>
           <ion-input formControlName="contractDescription" label="Contreact desciption" label-placement="floating"
-            fill="outline" color="dark" placeholder="Enter text"></ion-input>
+            fill="outline" color="dark" placeholder="Ex. Photographer will captures everything"></ion-input>
           <div
             *ngIf="this.vendorForm.controls['contractDescription'].touched && this.vendorForm.controls['contractDescription'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['contractDescription'].errors['required']">

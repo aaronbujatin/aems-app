@@ -1,9 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { VendorService } from '../service/vendor.service';
 import { Vendor } from '../model/vendor.model';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ToastController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { BookingService } from '../service/booking.service';
+import { Booking } from '../model/booking.model';
+import { AuthenticationServiceService } from '../service/authentication-service.service';
 
 @Component({
   selector: 'app-tab3',
@@ -11,19 +14,26 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
- 
-  constructor(private vendorService: VendorService, private formBuilder: FormBuilder) { }
+
+  constructor(
+    private vendorService: VendorService,
+    private formBuilder: FormBuilder,
+    private bookingService: BookingService,
+    private authenticationService: AuthenticationServiceService,
+    private toastController: ToastController) { }
 
 
-  vendorForm: FormGroup; 
+  vendorForm: FormGroup;
   vendors: Vendor[];
+  bookings: Booking[];
 
   ngOnInit() {
     this.getAllVendors();
     this.initForm();
-    
-  }
+    this.getAllBookingsByOrganizerName();
 
+  }
+  V
   public initForm() {
     this.vendorForm = this.formBuilder.group({
       eventNameReference: ['', [Validators.required]],
@@ -31,7 +41,8 @@ export class Tab3Page {
       companyName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),],],
       regionCityZip: ['', [Validators.required]],
-      contact: ['', [Validators.required], this.asyncPatternValidator],
+      contact: ['', [Validators.required, Validators.pattern("(09)[0-9 ]{9}"),
+      ]],
       website: ['', [Validators.required]],
       contractSigned: [''],
       contractExpired: [''],
@@ -41,6 +52,7 @@ export class Tab3Page {
       contractDescription: ['', [Validators.required]],
     })
   }
+
 
   asyncPatternValidator(
     control: AbstractControl
@@ -64,6 +76,16 @@ export class Tab3Page {
       }, (error) => {
         console.log(error);
 
+      }
+    )
+  }
+
+  public getAllBookingsByOrganizerName() {
+    const loggedInUsername = localStorage.getItem('loggedInUsername');
+    this.bookingService.getAllBookingByOrganizerName(loggedInUsername).subscribe(
+      (response: Booking[]) => {
+        this.bookings = response
+        console.log(response);
       }
     )
   }
@@ -107,9 +129,47 @@ export class Tab3Page {
     }
   };
 
+  onSubmit() {
+    const vendor = this.vendorForm.value
+    if (this.vendorForm.valid) {
+      this.bookingService.saveBooking(vendor).subscribe(
+        (response) => {
+          this.ngOnInit()
+          this.vendorForm.reset()
+          this.presentToast('bottom')
+          this.cancel()
+          console.log(response);
+        }
+      ), (error) => {
+        console.log(error);
+      }
+    } else {
+      this.errorInputToast('bottom');
+    }
+  }
 
-  contractExpiredDate : string
-  contractSignedDate : string
+  async presentToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Vendor successfully added',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
+  async errorInputToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Please provide proper input',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
+  contractExpiredDate: string
+  contractSignedDate: string
 
   contractSignedDateChanged(value) {
     this.contractSignedDate = value.split('T')[0];
@@ -119,7 +179,7 @@ export class Tab3Page {
   contractExpiredDateChanged(value) {
     this.contractExpiredDate = value.split('T')[0];
     this.vendorForm.get('contractExpired').setValue(this.contractExpiredDate);
-    console.log("expired date : " +this.contractExpiredDate);
+    console.log("expired date : " + this.contractExpiredDate);
   }
 
 

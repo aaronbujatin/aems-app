@@ -40,6 +40,7 @@ export class LoginPage implements OnInit {
     this.authenticationService.login(this.username, this.password).subscribe(
       (response) => {
         this.router.navigate(["/tabs"])
+        localStorage.setItem('loggedInUsername', this.username);
         console.log(response); 
         loading.dismiss();
       },

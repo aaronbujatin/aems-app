@@ -19,5 +19,7 @@ export class AuthenticationServiceService {
     return this.httpClient.get(`${this.API_URL}/api/v1/auth`, { headers, responseType: 'text' as 'json' });
   }
 
+  loggedInUsername: string;
+
 
 }
