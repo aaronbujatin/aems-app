@@ -3,7 +3,8 @@ import { VendorService } from '../service/vendor.service';
 import { Vendor } from '../model/vendor.model';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';;
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -20,6 +21,7 @@ export class Tab3Page {
   ngOnInit() {
     this.getAllVendors();
     this.initForm();
+    
   }
 
   public initForm() {
@@ -31,8 +33,8 @@ export class Tab3Page {
       regionCityZip: ['', [Validators.required]],
       contact: ['', [Validators.required], this.asyncPatternValidator],
       website: ['', [Validators.required]],
-      contractSigned: ['', [Validators.required]],
-      contractExpired: ['', [Validators.required]],
+      contractSigned: [''],
+      contractExpired: [''],
       emailAddressLine: ['', [Validators.required]],
       paymentStatus: ['', [Validators.required]],
       finalCost: ['', [Validators.required]],
@@ -104,6 +106,21 @@ export class Tab3Page {
       return console.log('Please provide all the required values!');
     }
   };
+
+
+  contractExpiredDate : string
+  contractSignedDate : string
+
+  contractSignedDateChanged(value) {
+    this.contractSignedDate = value.split('T')[0];
+    this.vendorForm.get('contractSigned').setValue(this.contractSignedDate);
+    console.log("signed date : " + this.contractSignedDate);
+  }
+  contractExpiredDateChanged(value) {
+    this.contractExpiredDate = value.split('T')[0];
+    this.vendorForm.get('contractExpired').setValue(this.contractExpiredDate);
+    console.log("expired date : " +this.contractExpiredDate);
+  }
 
 
 
