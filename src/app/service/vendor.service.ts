@@ -19,5 +19,8 @@ export class VendorService {
     return this.httpClient.get(`${this.API_URL}/api/v1/vendors/${id}`)
   }
 
+  public saveVendor(vendor){
+    return this.httpClient.post(`${this.API_URL}/api/v1/vendors`, vendor)
+  }
 
 }

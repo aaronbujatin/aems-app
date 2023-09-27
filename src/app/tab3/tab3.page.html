@@ -106,8 +106,6 @@
             </div>
           </div>
           <br>
-
-
           <ion-item class="item-date-container">
             <ion-label>Contract signed</ion-label>
             <ion-datetime-button datetime="contractSigned"></ion-datetime-button>
@@ -119,7 +117,6 @@
             </ng-template>
           </ion-modal>
           <br>
-
           <ion-item class="item-date-container">
             <ion-label>Contract expired</ion-label>
             <ion-datetime-button datetime="contractExpired"></ion-datetime-button>
@@ -157,7 +154,7 @@
             </div>
           </div>
           <br>
-          <ion-input formControlName="contractDescription" label="Contreact desciption" label-placement="floating"
+          <ion-input formControlName="contractDescription" label="Contract desciption" label-placement="floating"
             fill="outline" color="dark" placeholder="Ex. Photographer will captures everything"></ion-input>
           <div
             *ngIf="this.vendorForm.controls['contractDescription'].touched && this.vendorForm.controls['contractDescription'].invalid">

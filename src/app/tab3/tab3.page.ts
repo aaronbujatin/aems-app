@@ -33,7 +33,7 @@ export class Tab3Page {
     this.getAllBookingsByOrganizerName();
 
   }
-  V
+  
   public initForm() {
     this.vendorForm = this.formBuilder.group({
       eventNameReference: ['', [Validators.required]],
@@ -132,7 +132,7 @@ export class Tab3Page {
   onSubmit() {
     const vendor = this.vendorForm.value
     if (this.vendorForm.valid) {
-      this.bookingService.saveBooking(vendor).subscribe(
+      this.vendorService.saveVendor(vendor).subscribe(
         (response) => {
           this.ngOnInit()
           this.vendorForm.reset()

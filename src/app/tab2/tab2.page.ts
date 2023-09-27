@@ -17,11 +17,14 @@ export class Tab2Page {
 
   }
   ngOnInit() {
-
+    this.initForm();
     this.getPlannerApi()
 
 
   }
+
+  selectedTime = "14:30"
+
 
   async presentToast(position: 'bottom') {
     const toast = await this.toastController.create({
@@ -46,22 +49,32 @@ export class Tab2Page {
   date: string = ''
   time: string = ''
 
-  formData = this.formBuilder.group({
-    message: ['', Validators.required],
-    location: ['', Validators.required],
-    date: [''],
-    time: [''],
-  })
+  // onSubmit() {
+  //   const planner = this.plannerForm.value
+  //   if(planner.date === null && planner.time === null){
+  //     this.errorInputToast('bottom');
+  //   }else {
+  //     this.plannerService.savePlanner(planner).subscribe(
+  //       (response) => {
+  //         this.ngOnInit()
+  //         this.plannerForm.reset()
+  //         this.presentToast('bottom')
+  //         this.cancel()
+  //         console.log(response);
+  //       }
+  //     ), (error) => {
+  //       console.log(error);
+  //     }
+  //   }
+  // }
 
   onSubmit() {
-    const planner = this.formData.value
-    if(planner.date === null && planner.time === null){
-      this.errorInputToast('bottom');
-    }else {
+    const planner = this.plannerForm.value
+    if (this.plannerForm.valid) {
       this.plannerService.savePlanner(planner).subscribe(
         (response) => {
           this.ngOnInit()
-          this.formData.reset()
+          this.plannerForm.reset()
           this.presentToast('bottom')
           this.cancel()
           console.log(response);
@@ -69,12 +82,26 @@ export class Tab2Page {
       ), (error) => {
         console.log(error);
       }
+    } else {
+      this.errorInputToast('bottom');
     }
   }
 
 
+  plannerForm: FormGroup
 
+  public initForm() {
+    this.plannerForm = this.formBuilder.group({
+      message: ['', Validators.required],
+      location: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+    })
+  }
 
+  get errorControl() {
+    return this.plannerForm.controls;
+  }
 
   planners: Planner[]
 
@@ -86,7 +113,6 @@ export class Tab2Page {
       },
       (error) => {
         console.log(error);
-
       }
     );
   }
@@ -113,14 +139,14 @@ export class Tab2Page {
 
   timeChanged(value) {
     this.time = value.split('T')[1].substring(0, 5);
-    this.formData.get('time').setValue(this.time);
+    this.plannerForm.get('time').setValue(this.time);
     console.log(this.time);
 
   }
 
   dateChanged(value) {
     this.date = value.split('T')[0];
-    this.formData.get('date').setValue(this.date);
+    this.plannerForm.get('date').setValue(this.date);
     console.log(this.date);
   }
 
