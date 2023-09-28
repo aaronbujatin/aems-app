@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'aems-app',
+  appId: 'com.example.app',
+  appName: 'Sweet serenity',
   webDir: 'www',
   server: {
     androidScheme: 'https'

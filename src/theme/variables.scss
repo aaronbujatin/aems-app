@@ -1,3 +1,6 @@
+ion-content {
+  --background: #f9f9f9;
+}
 
 :root {
   --ion-color-pink: #FCA5A5;
@@ -7,6 +10,7 @@
   --ion-color-pink-shade: #de9191;
   --ion-color-pink-tint: #fcaeae;
 }
+
 
 .ion-color-pink {
   --ion-color-base: var(--ion-color-pink);

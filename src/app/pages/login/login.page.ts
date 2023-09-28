@@ -20,7 +20,6 @@ export class LoginPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      subHeader: 'Wrong credentials',
       message: 'Invalid username or password',
       buttons: ['OK'],
     });
