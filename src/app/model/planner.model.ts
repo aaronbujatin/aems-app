@@ -1,6 +1,6 @@
 export class Planner {
 
-    id : number
+    id : string
     message : string
     location : string 
     date : string

@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IonModal, ToastController } from '@ionic/angular';
+import { AlertController, IonModal, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonDatetime } from '@ionic/angular';
 import { PlannerService } from '../service/planner.service';
 import { Planner } from '../model/planner.model';
 import { CustomTimeFormatPipe } from '../custom-time-format.pipe';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -13,18 +14,32 @@ import { CustomTimeFormatPipe } from '../custom-time-format.pipe';
 })
 export class Tab2Page {
 
-  constructor(private formBuilder: FormBuilder, private plannerService: PlannerService, private toastController: ToastController) {
+  constructor(private formBuilder: FormBuilder,
+    private plannerService: PlannerService,
+    private toastController: ToastController,
+    private alertController: AlertController,
+    private loadingCtrl: LoadingController,
+    private router: Router, private route: ActivatedRoute,
+    private navCtrl: NavController) {
 
   }
   ngOnInit() {
     this.initForm();
     this.getPlannerApi()
+    console.log(this.router.url);
+    
 
 
   }
 
-  selectedTime = "14:30"
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      message: 'Are you sure you want to delete?',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 
   async presentToast(position: 'bottom') {
     const toast = await this.toastController.create({
@@ -49,24 +64,7 @@ export class Tab2Page {
   date: string = ''
   time: string = ''
 
-  // onSubmit() {
-  //   const planner = this.plannerForm.value
-  //   if(planner.date === null && planner.time === null){
-  //     this.errorInputToast('bottom');
-  //   }else {
-  //     this.plannerService.savePlanner(planner).subscribe(
-  //       (response) => {
-  //         this.ngOnInit()
-  //         this.plannerForm.reset()
-  //         this.presentToast('bottom')
-  //         this.cancel()
-  //         console.log(response);
-  //       }
-  //     ), (error) => {
-  //       console.log(error);
-  //     }
-  //   }
-  // }
+
 
   onSubmit() {
     const planner = this.plannerForm.value
@@ -148,6 +146,78 @@ export class Tab2Page {
     this.date = value.split('T')[0];
     this.plannerForm.get('date').setValue(this.date);
     console.log(this.date);
+  }
+
+
+  plannerId: string
+
+  ionViewWillEnter() {
+   
+  }
+
+  reloadPage() {
+    this.navCtrl.navigateForward('/tabs/planner');
+  }
+
+   reloadTab() {
+    // Get the current route URL
+    const currentRoute = this.router.url;
+
+    // Navigate to the same route to reload the component
+    this.router.navigateByUrl(currentRoute);
+  }
+
+  async deleteAlert(id: string) {
+    const alert = await this.alertController.create({
+
+      message: 'Are you sure you want to delete this planner?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel', // This role will dismiss the alert when clicked
+          handler: () => {
+            console.log('Cancel clicked, alert dismissed');
+          },
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.showLoading();
+            this.reloadTab();
+            this.deletePlannerById(id);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+
+
+  deletePlannerById(id: string) {
+    this.plannerService.deletePlannerById(id).subscribe(
+      (response) => {
+        this.ngOnInit()
+        console.log(response);
+      }, (error) => {
+         this.ngOnInit()
+        console.log(error);
+      }
+    )
+  }
+
+  public getPlannerId(id: string) {
+    this.plannerId = id
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Deleting...',
+      duration: 3000,
+    });
+
+    loading.present();
   }
 
 

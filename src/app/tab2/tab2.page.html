@@ -15,9 +15,13 @@
               </ion-item>
             </ion-col>
             <ion-col size="2" class="ion-no-padding">
-              <ion-button color="translucent" color="light" fill="clear">
+
+              <ion-button color="translucent" color="light" fill="clear" id="present-alert"
+                (click)="deleteAlert(planner.id)">
                 <ion-icon name="trash-outline"></ion-icon>
+
               </ion-button>
+
             </ion-col>
           </ion-row>
           <ion-row>
@@ -26,7 +30,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-icon name="calendar-outline"></ion-icon> {{planner.date | date :
-                'shortDate'}}
+              'shortDate'}}
             </ion-col>
             <ion-col size="4">
               <ion-icon name="time-outline"></ion-icon> {{planner.time | customTimeFormat }}
@@ -36,6 +40,9 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
+
+  <!-- <ion-alert trigger="present-alert" message="Delete this planner?" [buttons]="alertButtons" 
+    (didDismiss)="setResult($event)"></ion-alert> -->
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button id="open-modal-planner">

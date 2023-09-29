@@ -19,5 +19,9 @@ export class PlannerService {
     return this.httpClient.post(`${this.API_URL}/api/v1/planner`, planner)
   }
 
+  public deletePlannerById(id : string) {
+    return this.httpClient.delete(`${this.API_URL}/api/v1/planner/${id}`)
+  }
+
 
 }
