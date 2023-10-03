@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 
@@ -18,9 +19,10 @@ import { DatePipe } from '@angular/common';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    PdfViewerModule,
     ReactiveFormsModule],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe, InAppBrowser],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

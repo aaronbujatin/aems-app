@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'vendor-details/:id',
     loadChildren: () => import('./pages/vendor-details/vendor-details.module').then( m => m.VendorDetailsPageModule)
   },
+  {
+    path: 'pdf-view-page',
+    loadChildren: () => import('./pages/pdf-view-page/pdf-view-page.module').then( m => m.PdfViewPagePageModule)
+  },
   
   
 ];
