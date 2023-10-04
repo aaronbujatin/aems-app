@@ -12,4 +12,6 @@ export class GuestListPage implements OnInit {
   ngOnInit() {
   }
 
+  isEnabled = true
+
 }
