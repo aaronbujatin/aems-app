@@ -65,7 +65,7 @@
       <ion-label class="ion-text-wrap">
         <span class="bold-text"> Email :</span> {{booking.email}}
       </ion-label>
-      
+
       <br>
       <ion-label class="ion-text-wrap">
         <span class="bold-text">Weeding date :</span> {{booking.weddingDate | date : 'longDate'}}
@@ -114,11 +114,10 @@
       <ion-label class="ion-text-wrap">
         <span class="bold-text">Amount paid :</span> {{booking.amountPaid | currency : "Php"}}
       </ion-label>
-     
-      <ion-button (click)="viewPdfContract()" size="full" class="colored-button">View Contract</ion-button>
-      <section>
-        
-      </section>
+    
+      <ion-button routerLink="/guest-list" size="full" class="colored-button top-button" > View Guests List</ion-button>
+      <ion-button (click)="viewPdfContract()" size="full" class="colored-button2">View Contract</ion-button>
+
     </ion-card-content>
   </ion-card>
 </ion-content>

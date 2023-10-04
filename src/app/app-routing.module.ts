@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'pdf-view-page',
     loadChildren: () => import('./pages/pdf-view-page/pdf-view-page.module').then( m => m.PdfViewPagePageModule)
   },
+  {
+    path: 'guest-list',
+    loadChildren: () => import('./pages/guest-list/guest-list.module').then( m => m.GuestListPageModule)
+  },
   
   
 ];
