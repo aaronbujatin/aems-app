@@ -41,14 +41,13 @@
     </ion-card>
   </ion-list>
 
-  <!-- <ion-alert trigger="present-alert" message="Delete this planner?" [buttons]="alertButtons" 
-    (didDismiss)="setResult($event)"></ion-alert> -->
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button id="open-modal-planner">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  
   <ion-modal trigger="open-modal-planner" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-header>

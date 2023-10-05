@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Guest list</ion-title>
-    <ion-buttons slot="end" id="open-modal-guest">
+    <ion-buttons slot="end" id="open-modal-guest" class="add-button">
       <ion-icon name="add-outline" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
@@ -16,7 +16,7 @@
       <ion-title size="large">Guest list</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-searchbar show-clear-button="focus" placeholder="Search guest" class="custom"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="searchGuests()" show-clear-button="focus" placeholder="Search guest" class="custom"></ion-searchbar>
 
   <ion-button size="small" class="custom" (click)="presentAlertRadio()">
     <ion-icon slot="start" name="filter-outline"></ion-icon>
@@ -56,13 +56,36 @@
           <h4>Add new guest:</h4>
           <br>
           <ion-input label="Enter first name" formControlName="firstName" label-placement="floating" fill="outline"
-            color="dark" placeholder="Ex. Meet with clients"></ion-input>
+            color="dark" placeholder="Ex. Juan"></ion-input>
           <div *ngIf="this.guestForm.controls['firstName'].touched && this.guestForm.controls['firstName'].invalid">
             <div class="error ion-no-padding validator-text" *ngIf="errorControl['firstName'].errors['required']">
               <ion-text color="danger">First name is required.</ion-text>
             </div>
           </div>
           <br>
+          <ion-input label="Enter last name" formControlName="lastName" label-placement="floating" fill="outline"
+            color="dark" placeholder="Ex. Dela Cruz"></ion-input>
+          <div *ngIf="this.guestForm.controls['lastName'].touched && this.guestForm.controls['lastName'].invalid">
+            <div class="error ion-no-padding validator-text" *ngIf="errorControl['lastName'].errors['required']">
+              <ion-text color="danger">Last name is required.</ion-text>
+            </div>
+          </div>
+          <br>
+          <ion-input label="Enter email" formControlName="email" label-placement="floating" fill="outline" color="dark"
+            placeholder="Ex. juandelacruz@gmail.com"></ion-input>
+          <div *ngIf="this.guestForm.controls['email'].touched && this.guestForm.controls['email'].invalid">
+            <div class="error ion-no-padding validator-text" *ngIf="errorControl['email'].errors['required']">
+              <ion-text color="danger">Email is required.</ion-text>
+            </div>
+          </div>
+          <br>
+          <ion-input label="Enter relatedness" formControlName="relatedness" label-placement="floating" fill="outline" color="dark"
+            placeholder="Ex. Cousin"></ion-input>
+          <div *ngIf="this.guestForm.controls['relatedness'].touched && this.guestForm.controls['relatedness'].invalid">
+            <div class="error ion-no-padding validator-text" *ngIf="errorControl['relatedness'].errors['required']">
+              <ion-text color="danger">Relation is required.</ion-text>
+            </div>
+          </div>
           <ion-button type="submitForm" size="full" class="colored-button">Confirm</ion-button>
         </form>
       </ion-content>

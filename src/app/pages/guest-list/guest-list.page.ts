@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, IonModal, LoadingController } from '@ionic/angular';
+import { AlertController, IonModal, LoadingController, ToastController } from '@ionic/angular';
 import { Guest } from 'src/app/model/guest.model';
 import { GuestService } from 'src/app/service/guest.service';
 
@@ -14,7 +14,8 @@ export class GuestListPage implements OnInit {
   constructor(private guestService: GuestService, 
     private alertController: AlertController, 
     private loadingController: LoadingController, 
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private toastController: ToastController) {
     
    }
 
@@ -129,27 +130,64 @@ export class GuestListPage implements OnInit {
   }
 
   onSubmit() {
-    // const planner = this.plannerForm.value
-    // if (this.plannerForm.valid) {
-    //   this.plannerService.savePlanner(planner).subscribe(
-    //     (response) => {
-    //       this.ngOnInit()
-    //       this.plannerForm.reset()
-    //       this.presentToast('bottom')
-    //       this.cancel()
-    //       console.log(response);
-    //     }
-    //   ), (error) => {
-    //     console.log(error);
-    //   }
-    // } else {
-    //   this.errorInputToast('bottom');
-    // }
+    const guest = this.guestForm.value
+    if (this.guestForm.valid) {
+      this.guestService.saveGuest(guest).subscribe(
+        (response) => {
+          this.ngOnInit()
+          this.guestForm.reset()
+          this.presentToast('bottom')
+          this.cancel()
+          console.log(response);
+        }
+      ), (error) => {
+        console.log(error);
+      }
+    } else {
+      this.errorInputToast('bottom');
+    }
   }
 
   get errorControl() {
     return this.guestForm.controls;
   }
+
+  async presentToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Guest successfully added',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
+  async errorInputToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Please provide proper input',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
+  async showSuccessLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Adding...',
+      duration: 2000,
+    });
+
+    loading.present();
+  }
+
+  searchQuery : string = ""
+
+  searchGuests(){
+    console.log(this.searchQuery);
+    
+  }
+
 
   // async loadGuestByStatus(status: string) {
   //   const loading = await this.loadingController.create({
