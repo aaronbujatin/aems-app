@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, IonModal, LoadingController } from '@ionic/angular';
 import { Guest } from 'src/app/model/guest.model';
 import { GuestService } from 'src/app/service/guest.service';
 
@@ -10,10 +11,15 @@ import { GuestService } from 'src/app/service/guest.service';
 })
 export class GuestListPage implements OnInit {
 
-  constructor(private guestService: GuestService, private alertController: AlertController, private loadingController: LoadingController) { }
+  constructor(private guestService: GuestService, 
+    private alertController: AlertController, 
+    private loadingController: LoadingController, 
+    private formBuilder: FormBuilder) {
+    
+   }
 
   ngOnInit() {
-   
+    this.initForm();
     this.getAllGuest()
 
   }
@@ -38,24 +44,7 @@ export class GuestListPage implements OnInit {
 
 
   guests: Guest[]
-
-
-  // async presentAlert() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Filter guest',
-  //     buttons: this.alertButtons,
-  //     inputs: this.alertInputs,
-  //   });
-
-  //   await alert.present();
-
-  //   alert.onDidDismiss().then((data) => {
-  //     if (data.role === 'ok') {
-  //       console.log('Selected Value:', data.data.values);
-  //       // 'data.data.values' will contain the value of the selected radio option
-  //     }
-  //   });
-  // }
+  currentFilter : string = "All"
 
   async presentAlertRadio() {
     const alert = await this.alertController.create({
@@ -92,9 +81,25 @@ export class GuestListPage implements OnInit {
         }, {
           text: 'Ok',
           handler: (data) => {
-            this.loadGuestByStatus(data)
-
-
+            // this.loadGuestByStatus(data)
+            if(data === 'all') {
+              this.getAllGuest();
+              this.currentFilter = "All"
+            } else if( data === 'confirmed' || data === 'undecided') {
+              this.guestService.getGuestsByStatus(data).subscribe(
+                (response: Guest[]) => {
+                  this.currentFilter = data
+                  this.guests = response;
+                  console.log(this.guests);
+               
+                }, (error) => {
+                  console.log(error);
+        
+                }
+              )
+            }
+            console.log(data);
+            
           }
         }
       ]
@@ -102,44 +107,89 @@ export class GuestListPage implements OnInit {
     await alert.present();
   }
 
-  async loadGuestByStatus(status: string) {
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      spinner: 'crescent', // You can change the spinner type here
-    });
-    await loading.present();
+  @ViewChild(IonModal) modal: IonModal;
+ 
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
 
-    loading.onDidDismiss().then((data) => {
-      if (data.role === 'ok') {
-        const selectedValue = data.data.values
+  confirm() {
+    this.modal.dismiss(null, 'confirm');
+  }
 
-        if (selectedValue === 'all') {
-          this.guestService.getAllGuest().subscribe(
-            (response: Guest[]) => {
-              this.guests = response
-              console.log(this.guests);
-            }, (error) => {
-              console.log(error);
-              loading.dismiss();
-            }
-          )
-        } else if(selectedValue === 'confirmed' || selectedValue === 'undecided') {
-          this.guestService.getGuestsByStatus(status).subscribe(
-            (response: Guest[]) => {
-              this.guests = response;
-              console.log(this.guests);
-              loading.dismiss();
-            }, (error) => {
-              console.log(error);
-              loading.dismiss();
-            }
-          )
-        }
-      }
+  guestForm: FormGroup
+
+  public initForm() {
+    this.guestForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      relatedness: ['', Validators.required],
     })
   }
 
+  onSubmit() {
+    // const planner = this.plannerForm.value
+    // if (this.plannerForm.valid) {
+    //   this.plannerService.savePlanner(planner).subscribe(
+    //     (response) => {
+    //       this.ngOnInit()
+    //       this.plannerForm.reset()
+    //       this.presentToast('bottom')
+    //       this.cancel()
+    //       console.log(response);
+    //     }
+    //   ), (error) => {
+    //     console.log(error);
+    //   }
+    // } else {
+    //   this.errorInputToast('bottom');
+    // }
+  }
 
+  get errorControl() {
+    return this.guestForm.controls;
+  }
+
+  // async loadGuestByStatus(status: string) {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Loading...',
+  //     spinner: 'crescent', // You can change the spinner type here
+  //   });
+  //   await loading.present();
+
+  //   loading.onDidDismiss().then((data) => {
+  //     if (data.role === 'ok') {
+  //       const selectedValue = data.data.values
+
+  //       if (selectedValue === 'all') {
+  //         this.guestService.getAllGuest().subscribe(
+  //           (response: Guest[]) => {
+  //             this.guests = response
+  //             console.log(this.guests);
+  //           }, (error) => {
+  //             console.log(error);
+  //             loading.dismiss();
+  //           }
+  //         )
+  //       } else if(selectedValue === 'confirmed' || selectedValue === 'undecided') {
+        //   this.guestService.getGuestsByStatus(status).subscribe(
+        //     (response: Guest[]) => {
+        //       this.guests = response;
+        //       console.log(this.guests);
+        //       loading.dismiss();
+        //     }, (error) => {
+        //       console.log(error);
+        //       loading.dismiss();
+        //     }
+        //   )
+        // }
+  //     }
+  //   })
+  // }
+
+  
+  
   public getAllGuest(){
     this.guestService.getAllGuest().subscribe(
       (response : Guest[]) => {

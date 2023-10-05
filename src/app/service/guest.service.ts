@@ -9,7 +9,7 @@ export class GuestService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private API_URL = environment.baseUrl
+  private API_URL = environment.baseUrl;
 
   private localUrl = "http://localhost:8080"
 

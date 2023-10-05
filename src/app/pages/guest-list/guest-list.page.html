@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Guest list</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" id="open-modal-guest">
       <ion-icon name="add-outline" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
@@ -22,6 +22,10 @@
     <ion-icon slot="start" name="filter-outline"></ion-icon>
     Filter
   </ion-button>
+  <ion-button size="small" class="custom">
+
+    {{currentFilter}}
+  </ion-button>
   <ion-alert trigger="filter-alert" header="Filter guest" [buttons]="alertButtons" [inputs]="alertInputs"></ion-alert>
 
 
@@ -36,21 +40,32 @@
         class="custom"></ion-icon>
       <ion-icon *ngIf="guest.status === 'undecided'" name="help-circle-outline" slot="end" class="custom"></ion-icon>
     </ion-item>
-
-    
   </ion-list>
-  <!-- <ion-list class="ion-no-padding" >
-    <ion-card class="ion-no-border ion-no-padding">
-      <ion-card-content>
-        <ion-item lines="none" color="none"  class="ion-no-padding item-container">
-          <ion-label class="label-container">
-            <h2><span class="label-title">Event name : </span> event name test</h2>
-            <p><span class="label-subtitle">Client name : </span>Test client name</p>
-          </ion-label>
-          <ion-icon name="chevron-forward-outline" slot="end" color="light"></ion-icon>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-    
-  </ion-list> -->
+
+  <ion-modal trigger="open-modal-guest">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="guestForm" (ngSubmit)="onSubmit()">
+          <h4>Add new guest:</h4>
+          <br>
+          <ion-input label="Enter first name" formControlName="firstName" label-placement="floating" fill="outline"
+            color="dark" placeholder="Ex. Meet with clients"></ion-input>
+          <div *ngIf="this.guestForm.controls['firstName'].touched && this.guestForm.controls['firstName'].invalid">
+            <div class="error ion-no-padding validator-text" *ngIf="errorControl['firstName'].errors['required']">
+              <ion-text color="danger">First name is required.</ion-text>
+            </div>
+          </div>
+          <br>
+          <ion-button type="submitForm" size="full" class="colored-button">Confirm</ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
