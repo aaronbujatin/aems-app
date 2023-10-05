@@ -18,28 +18,26 @@
   </ion-header>
   <ion-searchbar show-clear-button="focus" placeholder="Search guest" class="custom"></ion-searchbar>
 
-  <ion-button size="small" class="custom">
+  <ion-button size="small" class="custom" (click)="presentAlertRadio()">
     <ion-icon slot="start" name="filter-outline"></ion-icon>
-     Filter
+    Filter
   </ion-button>
+  <ion-alert trigger="filter-alert" header="Filter guest" [buttons]="alertButtons" [inputs]="alertInputs"></ion-alert>
+
+
   <ion-list>
-    <ion-item class="">
+    <ion-item class="" *ngFor="let guest of guests">
       <ion-label>
-        <h2><span>Kise Ryota</span></h2>
-        <p><span>Cousin</span></p>
+        <h2><span>{{guest.firstName}} {{guest.lastName}}</span></h2>
+        <p><span>{{guest.relatedness}}</span></p>
       </ion-label>
 
-      <ion-icon *ngIf="isEnabled" name="checkmark-circle-outline" slot="end" class="custom"></ion-icon>
-      <ion-icon *ngIf="!isEnabled" name="help-circle-outline" slot="end" class="custom"></ion-icon>
+      <ion-icon *ngIf="guest.status === 'confirmed'" name="checkmark-circle-outline" slot="end"
+        class="custom"></ion-icon>
+      <ion-icon *ngIf="guest.status === 'undecided'" name="help-circle-outline" slot="end" class="custom"></ion-icon>
     </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2><span>Aomine Daiki</span></h2>
-        <p><span>Cousin</span></p>
-      </ion-label>
-      <ion-icon *ngIf="!isEnabled" name="checkmark-circle-outline" slot="end" class="custom"></ion-icon>
-      <ion-icon *ngIf="isEnabled" name="help-circle-outline" slot="end" class="custom"></ion-icon>
-    </ion-item>
+
+    
   </ion-list>
   <!-- <ion-list class="ion-no-padding" >
     <ion-card class="ion-no-border ion-no-padding">

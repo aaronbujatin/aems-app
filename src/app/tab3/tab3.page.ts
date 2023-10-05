@@ -110,15 +110,6 @@ export class Tab3Page {
     }
   }
 
-  events = [
-    {
-      "id": 1, "name": "Black clover"
-    },
-    {
-      "id": 2, "name": "Naruto Shippuden"
-    },
-
-  ]
 
   submitForm = () => {
     if (this.vendorForm.valid) {
