@@ -15,19 +15,19 @@ export class GuestService {
   private localUrl = "http://localhost:8080"
 
 
-  public saveGuest(guest : Form) {
+  public saveGuest(guest: Form) {
     return this.httpClient.post(`${this.API_URL}/api/v1/guests`, guest);
   }
 
-  public seachGuestName(searchQuery : string){
-    return this.httpClient.get(`${this.API_URL}/api/v1/guests?search=${searchQuery}`)
+  public searchGuestName(searchQuery: string) {
+    return this.httpClient.get(`${this.localUrl}/api/v1/guests/filter?searchQuery=${searchQuery}`)
   }
 
-  public getAllGuest(){
+  public getAllGuest() {
     return this.httpClient.get(`${this.API_URL}/api/v1/guests/all`);
   }
 
-  public getGuestsByStatus(status : string) {
+  public getGuestsByStatus(status: string) {
     return this.httpClient.get(`${this.API_URL}/api/v1/guests?status=${status}`)
   }
 

@@ -184,7 +184,15 @@ export class GuestListPage implements OnInit {
   searchQuery : string = ""
 
   searchGuests(){
-    console.log(this.searchQuery);
+    this.guestService.searchGuestName(this.searchQuery).subscribe(
+      (response : Guest[]) => {
+        this.guests = response
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+        
+      }
+    )
     
   }
 
