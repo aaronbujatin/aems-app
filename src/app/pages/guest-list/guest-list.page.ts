@@ -129,7 +129,32 @@ export class GuestListPage implements OnInit {
     })
   }
 
-  onSubmit() {
+  // onSubmit() {
+  //   const guest = this.guestForm.value
+  //   if (this.guestForm.valid) {
+  //     this.guestService.saveGuest(guest).subscribe(
+  //       (response) => {
+  //         this.ngOnInit()
+  //         this.guestForm.reset()
+  //         this.presentToast('bottom')
+  //         this.cancel()
+  //         console.log(response);
+  //       }
+  //     ), (error) => {
+  //       console.log(error);
+  //     }
+  //   } else {
+  //     this.errorInputToast('bottom');
+  //   }
+  // }
+
+  async onSubmit() {
+    const loading = await this.loadingController.create({
+      message: 'Processing...',
+      spinner: 'crescent', // You can change the spinner type here
+    });
+    await loading.present();
+
     const guest = this.guestForm.value
     if (this.guestForm.valid) {
       this.guestService.saveGuest(guest).subscribe(
@@ -138,12 +163,15 @@ export class GuestListPage implements OnInit {
           this.guestForm.reset()
           this.presentToast('bottom')
           this.cancel()
+          loading.dismiss();
           console.log(response);
         }
       ), (error) => {
         console.log(error);
+        loading.dismiss();
       }
     } else {
+      loading.dismiss();
       this.errorInputToast('bottom');
     }
   }
