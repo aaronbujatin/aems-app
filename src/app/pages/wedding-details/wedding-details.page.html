@@ -115,7 +115,7 @@
         <span class="bold-text">Amount paid :</span> {{booking.amountPaid | currency : "Php"}}
       </ion-label>
     
-      <ion-button routerLink="/guest-list" size="full" class="colored-button top-button" > View Guests List</ion-button>
+      <ion-button routerLink="/guest-list" size="full" class="colored-button top-button" (click)="getEventName(booking.eventName)"> View Guests List</ion-button>
       <ion-button (click)="viewPdfContract()" size="full" class="colored-button2">View Contract</ion-button>
 
     </ion-card-content>

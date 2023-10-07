@@ -21,7 +21,9 @@ export class GuestListPage implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.getAllGuest()
+    this.getAllGuestByEventName()
+    console.log(this.guestService.eventNameReference);
+    
 
   }
 
@@ -84,23 +86,20 @@ export class GuestListPage implements OnInit {
           handler: (data) => {
             // this.loadGuestByStatus(data)
             if(data === 'all') {
-              this.getAllGuest();
+              this.getAllGuestByEventName();
               this.currentFilter = "All"
             } else if( data === 'confirmed' || data === 'undecided') {
-              this.guestService.getGuestsByStatus(data).subscribe(
-                (response: Guest[]) => {
+              this.guestService.getAllGuestByEventNameAndStatus(this.guestService.eventNameReference, data).subscribe(
+                (response : Guest[]) => {
                   this.currentFilter = data
                   this.guests = response;
                   console.log(this.guests);
-               
                 }, (error) => {
                   console.log(error);
-        
                 }
               )
             }
             console.log(data);
-            
           }
         }
       ]
@@ -125,28 +124,11 @@ export class GuestListPage implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
+      eventNameReference: [this.guestService.eventNameReference, Validators.required],
       relatedness: ['', Validators.required],
     })
   }
 
-  // onSubmit() {
-  //   const guest = this.guestForm.value
-  //   if (this.guestForm.valid) {
-  //     this.guestService.saveGuest(guest).subscribe(
-  //       (response) => {
-  //         this.ngOnInit()
-  //         this.guestForm.reset()
-  //         this.presentToast('bottom')
-  //         this.cancel()
-  //         console.log(response);
-  //       }
-  //     ), (error) => {
-  //       console.log(error);
-  //     }
-  //   } else {
-  //     this.errorInputToast('bottom');
-  //   }
-  // }
 
   async onSubmit() {
     const loading = await this.loadingController.create({
@@ -156,6 +138,7 @@ export class GuestListPage implements OnInit {
     await loading.present();
 
     const guest = this.guestForm.value
+  
     if (this.guestForm.valid) {
       this.guestService.saveGuest(guest).subscribe(
         (response) => {
@@ -212,68 +195,27 @@ export class GuestListPage implements OnInit {
   searchQuery : string = ""
 
   searchGuests(){
-    this.guestService.searchGuestName(this.searchQuery).subscribe(
+    this.guestService.getSearchByEventNameAndFirstNameOrLastName(this.guestService.eventNameReference, this.searchQuery).subscribe(
       (response : Guest[]) => {
         this.guests = response
         console.log(response);
       }, (error) => {
         console.log(error);
-        
       }
     )
     
   }
 
 
-  // async loadGuestByStatus(status: string) {
-  //   const loading = await this.loadingController.create({
-  //     message: 'Loading...',
-  //     spinner: 'crescent', // You can change the spinner type here
-  //   });
-  //   await loading.present();
-
-  //   loading.onDidDismiss().then((data) => {
-  //     if (data.role === 'ok') {
-  //       const selectedValue = data.data.values
-
-  //       if (selectedValue === 'all') {
-  //         this.guestService.getAllGuest().subscribe(
-  //           (response: Guest[]) => {
-  //             this.guests = response
-  //             console.log(this.guests);
-  //           }, (error) => {
-  //             console.log(error);
-  //             loading.dismiss();
-  //           }
-  //         )
-  //       } else if(selectedValue === 'confirmed' || selectedValue === 'undecided') {
-        //   this.guestService.getGuestsByStatus(status).subscribe(
-        //     (response: Guest[]) => {
-        //       this.guests = response;
-        //       console.log(this.guests);
-        //       loading.dismiss();
-        //     }, (error) => {
-        //       console.log(error);
-        //       loading.dismiss();
-        //     }
-        //   )
-        // }
-  //     }
-  //   })
-  // }
-
-  
-  
-  public getAllGuest(){
-    this.guestService.getAllGuest().subscribe(
+  public getAllGuestByEventName(){
+    this.guestService.getAllGuestByEventName(this.guestService.eventNameReference).subscribe(
       (response : Guest[]) => {
         this.guests = response
         console.log(response);
-        
       }, (error) => {
         console.log(error);
-      
       }
     )
   }
+
 }

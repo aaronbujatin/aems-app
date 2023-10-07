@@ -5,6 +5,7 @@ import { BookingService } from 'src/app/service/booking.service';
 import { PdfGenerationService } from 'src/app/service/pdf-generation.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { LoadingController } from '@ionic/angular';
+import { GuestService } from 'src/app/service/guest.service';
 declare var window;
 @Component({
   selector: 'app-wedding-details',
@@ -18,7 +19,8 @@ export class WeddingDetailsPage implements OnInit {
     private pdfGeneration: PdfGenerationService,
     private inAppBrowser: InAppBrowser,
     private loader : LoadingController,
-    private router : Router) { }
+    private router : Router,
+    private guestService : GuestService) { }
 
   ngOnInit() {
 
@@ -61,6 +63,10 @@ export class WeddingDetailsPage implements OnInit {
     //     console.log(error);
     //   }
     // )
+  }
+
+  getEventName(eventName : string){
+    this.guestService.eventNameReference = eventName;
   }
 
   viewPdf(){

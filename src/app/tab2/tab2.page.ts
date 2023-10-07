@@ -20,14 +20,15 @@ export class Tab2Page {
     private alertController: AlertController,
     private loadingCtrl: LoadingController,
     private router: Router, private route: ActivatedRoute,
-    private navCtrl: NavController) {
+    private navCtrl: NavController,
+    private loadingController: LoadingController) {
 
   }
   ngOnInit() {
     this.initForm();
     this.getPlannerApi()
     console.log(this.router.url);
-    
+
 
 
   }
@@ -64,9 +65,13 @@ export class Tab2Page {
   date: string = ''
   time: string = ''
 
+  async onSubmit() {
+    const loading = await this.loadingController.create({
+      message: 'Processing...',
+      spinner: 'crescent', // You can change the spinner type here
+    });
+    await loading.present();
 
-
-  onSubmit() {
     const planner = this.plannerForm.value
     if (this.plannerForm.valid) {
       this.plannerService.savePlanner(planner).subscribe(
@@ -75,15 +80,36 @@ export class Tab2Page {
           this.plannerForm.reset()
           this.presentToast('bottom')
           this.cancel()
+          loading.dismiss();
           console.log(response);
         }
       ), (error) => {
+        loading.dismiss();
         console.log(error);
+
       }
     } else {
       this.errorInputToast('bottom');
     }
   }
+  // onSubmit() {
+  //   const planner = this.plannerForm.value
+  //   if (this.plannerForm.valid) {
+  //     this.plannerService.savePlanner(planner).subscribe(
+  //       (response) => {
+  //         this.ngOnInit()
+  //         this.plannerForm.reset()
+  //         this.presentToast('bottom')
+  //         this.cancel()
+  //         console.log(response);
+  //       }
+  //     ), (error) => {
+  //       console.log(error);
+  //     }
+  //   } else {
+  //     this.errorInputToast('bottom');
+  //   }
+  // }
 
 
   plannerForm: FormGroup
@@ -152,14 +178,14 @@ export class Tab2Page {
   plannerId: string
 
   ionViewWillEnter() {
-   
+
   }
 
   reloadPage() {
     this.navCtrl.navigateForward('/tabs/planner');
   }
 
-   reloadTab() {
+  reloadTab() {
     // Get the current route URL
     const currentRoute = this.router.url;
 
@@ -201,7 +227,7 @@ export class Tab2Page {
         this.ngOnInit()
         console.log(response);
       }, (error) => {
-         this.ngOnInit()
+        this.ngOnInit()
         console.log(error);
       }
     )
