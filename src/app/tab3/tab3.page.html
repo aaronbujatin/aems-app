@@ -1,3 +1,4 @@
+<ng-http-loader spinner="sk-wave"></ng-http-loader>
 <ion-content [fullscreen]="true">
   <ion-toolbar>
     <ion-title>Vendors</ion-title>
@@ -46,8 +47,27 @@
             </div>
           </div>
           <br>
+          <ion-item fill="outline" lines="none">
+            <ion-select label="Select vendor type" formControlName="vendorType" >
+              <ion-select-option value="Officiant">Officiant</ion-select-option>
+              <ion-select-option value="Ceremony">Ceremony</ion-select-option>
+              <ion-select-option value="Reception">Reception</ion-select-option>
+              <ion-select-option value="Caterer">Caterer</ion-select-option>
+              <ion-select-option value="Tables & Chairs">Tables & Chairs</ion-select-option>
+              <ion-select-option value="Photographer">Photographer</ion-select-option>
+              <ion-select-option value="Videographer">Videographer</ion-select-option>
+              <ion-select-option value="Cake Baker">Cake Baker</ion-select-option>
+              <ion-select-option value="Stationer">Stationer</ion-select-option>
+              <ion-select-option value="Lights & Sound">Lights & Sound</ion-select-option>
+              <ion-select-option value="Musicians">Musicians</ion-select-option>
+              <ion-select-option value="Bridal Car">Bridal Car</ion-select-option>
+              <ion-select-option value="Flowerist">Flowerist</ion-select-option>
+              <ion-select-option value="Makeup Artist">Makeup Artist</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <!-- <br>
           <ion-input label="Vendor type" formControlName="vendorType" label-placement="floating" fill="outline"
-            color="dark" placeholder="Ex. Photographer"></ion-input>
+            color="dark" placeholder="Ex. Photographer"></ion-input> -->
           <div *ngIf="this.vendorForm.controls['vendorType'].touched && this.vendorForm.controls['vendorType'].invalid">
             <div class="error ion-no-padding" *ngIf="errorControl['vendorType'].errors['required']">
               <ion-text color="danger">Vendor type is required.</ion-text>

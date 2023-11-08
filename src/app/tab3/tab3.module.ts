@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
     CommonModule,
     FormsModule,
     Tab3PageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   declarations: [Tab3Page]
 })

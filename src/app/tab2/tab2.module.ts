@@ -6,6 +6,7 @@ import { Tab2Page } from './tab2.page';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { CustomTimeFormatPipe } from '../custom-time-format.pipe';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { CustomTimeFormatPipe } from '../custom-time-format.pipe';
     CommonModule,
     FormsModule,
     Tab2PageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   declarations: [Tab2Page, CustomTimeFormatPipe]
 })

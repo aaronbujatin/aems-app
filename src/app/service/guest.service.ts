@@ -18,19 +18,19 @@ export class GuestService {
   
 
   public saveGuest(guest: Form) {
-    return this.httpClient.post(`${this.API_URL}/api/v1/guests`, guest);
+    return this.httpClient.post(`${this.localUrl}/api/v1/guests`, guest);
   }
 
   public getAllGuestByEventName(eventName : string){
-    return this.httpClient.get(`${this.API_URL}/api/v1/guests/event?eventName=${eventName}`)
+    return this.httpClient.get(`${this.localUrl}/api/v1/guests/event?eventName=${eventName}`)
   }
 
   public getAllGuestByEventNameAndStatus(eventName : string, status : string){
-    return this.httpClient.get(`${this.API_URL}/api/v1/guests/filter?eventName=${eventName}&status=${status}`)
+    return this.httpClient.get(`${this.localUrl}/api/v1/guests/filter?eventName=${eventName}&status=${status}`)
   }
 
   public getSearchByEventNameAndFirstNameOrLastName(eventName : string, searchQuery : string){
-    return this.httpClient.get(`${this.API_URL}/api/v1/guests/search?eventName=${eventName}&searchQuery=${searchQuery}`)
+    return this.httpClient.get(`${this.localUrl}/api/v1/guests/search?eventName=${eventName}&searchQuery=${searchQuery}`)
   }
 
 

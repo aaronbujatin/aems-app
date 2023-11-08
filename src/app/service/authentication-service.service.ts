@@ -16,7 +16,7 @@ export class AuthenticationServiceService {
 
   public login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.httpClient.get(`${this.API_URL}/api/v1/auth`, { headers, responseType: 'text' as 'json' });
+    return this.httpClient.get(`${this.baseUrl}/api/v1/auth`, { headers, responseType: 'text' as 'json' });
   }
 
   loggedInUsername: string;

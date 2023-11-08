@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-
+import { NgHttpLoaderModule } from 'ng-http-loader'; 
 
 
 @NgModule({
@@ -19,6 +19,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
     PdfViewerModule,
     ReactiveFormsModule],
 

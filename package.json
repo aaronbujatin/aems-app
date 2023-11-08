@@ -31,6 +31,7 @@
     "@ionic-native/in-app-browser": "^5.36.0",
     "@ionic/angular": "^7.0.0",
     "ionicons": "^7.0.0",
+    "ng-http-loader": "^14.0.0",
     "ng2-pdf-viewer": "^10.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -1,3 +1,4 @@
+<ng-http-loader spinner="sk-wave"></ng-http-loader>
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -7,114 +8,82 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="color-bg">
-  <!-- <div class="vertical-center-container">
-    <div class="ion-text-center">
-      <p>Choose an action:</p>
-    </div>
-    <ion-row class="ion-padding">
-      <ion-col size="12">
-        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
-          routerLink="/to-be-processed">
-          <ion-icon slot="start" name="settings-outline"></ion-icon> To be
-          Processed</ion-button>
-      </ion-col>
-      <ion-col size="12">
-        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"><ion-icon
-            slot="start" name="checkmark-circle-outline"></ion-icon>Completed</ion-button>
-      </ion-col>
-      <ion-col size="12">
-        <ion-button expand="full" shape="round" class="button-lowercase custom-button-text testBtn"
-          routerLink="/manage-vendors"><ion-icon slot="start" name="reader-outline"></ion-icon>Manage
-          Vendors</ion-button>
-      </ion-col>
-    </ion-row>
-  </div> -->
-
   <ion-card class="color-bg">
     <img alt="Silhouette of mountains" src="assets/icon/details-logo.png" />
     <ion-card-header>
       <ion-card-title>Event name : {{booking.eventName}}</ion-card-title>
-      <ion-card-subtitle>Theme style : {{booking.themeStyle}}</ion-card-subtitle>
+     
     </ion-card-header>
 
     <ion-card-content scroll-y="false">
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Address :</span> {{booking.address}}
+        <span class="bold-text"> Client name:</span> {{booking.clientName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Booking status : </span> {{booking.bookingStatus}}
+        <span class="bold-text"> Client contact no.: </span> {{booking.clientContactNumber}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Booking source :</span> {{booking.bookingSource}}
+        <span class="bold-text"> Email: </span> {{booking.email}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Booking date :</span> {{booking.bookingDate | date: 'longDate'}}
+        <span class="bold-text"> Groom name:</span> {{booking.groomName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Client name :</span> {{booking.clientName}}
+        <span class="bold-text"> Groom contact no.:</span> {{booking.groomContactNumber}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Client contact no. :</span> {{booking.clientContactNumber}}
+        <span class="bold-text"> Bride name:</span> {{booking.brideName}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Email :</span> {{booking.email}}
-      </ion-label>
-
-      <br>
-      <ion-label class="ion-text-wrap">
-        <span class="bold-text">Weeding date :</span> {{booking.weddingDate | date : 'longDate'}}
+        <span class="bold-text"> Bride contact no.:</span> {{booking.brideContactNumber}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Wedding type :</span> {{booking.weddingType}}
+        <span class="bold-text"> Address: </span> {{booking.address}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Ceremony venue :</span> {{booking.ceremonyVenue}}
+        <span class="bold-text"> Wedding date: </span> {{booking.weddingDate | date : 'longDate'}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Reception venue :</span> {{booking.receptionVenue}}
+        <span class="bold-text">Wedding type:</span> {{booking.weddingType}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Expected guest number:</span> {{booking.expectedGuestNumber}}
+        <span class="bold-text">Wedding theme:</span> {{booking.weddingTheme}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Groom name :</span> {{booking.groomName}}
+        <span class="bold-text">Ceremony venue:</span> {{booking.ceremonyVenue}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Groom contact number :</span> {{booking.groomContactNumber}}
+        <span class="bold-text">Reception venue:</span> {{booking.receptionVenue}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">bride name :</span> {{booking.brideName}}
+        <span class="bold-text"> Selected package :</span> {{booking.selectedPackage}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Bride contact number :</span> {{booking.brideContactNumber}}
+        <span class="bold-text"> Booking status:</span> {{booking.bookingStatus}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Payment method :</span> {{booking.paymentMethod}}
+        <span class="bold-text"> Booking source:</span> {{booking.bookingSource}}
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text">Selectd package :</span> {{booking.selectedPackage}}
+        <span class="bold-text"> Booking date:</span> {{booking.bookingDate}}
       </ion-label>
       <br>
-      <ion-label class="ion-text-wrap">
-        <span class="bold-text">Amount paid :</span> {{booking.amountPaid | currency : "Php"}}
-      </ion-label>
-    
       <ion-button routerLink="/guest-list" size="full" class="colored-button top-button" (click)="getEventName(booking.eventName)"> View Guests List</ion-button>
       <ion-button (click)="viewPdfContract()" size="full" class="colored-button2">View Contract</ion-button>
 

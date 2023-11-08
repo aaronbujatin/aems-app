@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { GuestListPageRoutingModule } from './guest-list-routing.module';
 
 import { GuestListPage } from './guest-list.page';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { GuestListPage } from './guest-list.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    GuestListPageRoutingModule
+    GuestListPageRoutingModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   declarations: [GuestListPage]
 })

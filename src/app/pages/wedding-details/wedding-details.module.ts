@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { WeddingDetailsPageRoutingModule } from './wedding-details-routing.module';
 
 import { WeddingDetailsPage } from './wedding-details.page';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    WeddingDetailsPageRoutingModule
+    WeddingDetailsPageRoutingModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   declarations: [WeddingDetailsPage]
 })

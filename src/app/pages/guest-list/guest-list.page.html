@@ -1,3 +1,4 @@
+<ng-http-loader spinner="sk-wave"></ng-http-loader>
 <ion-header [translucent]="true">
   <ion-toolbar class="custom">
     <ion-buttons slot="start">
@@ -28,9 +29,13 @@
   </ion-button>
   <ion-alert trigger="filter-alert" header="Filter guest" [buttons]="alertButtons" [inputs]="alertInputs"></ion-alert>
 
-
+  
   <ion-list>
+    <ion-label *ngIf="guests?.length === 0">
+      No added guest yet
+    </ion-label>
     <ion-item class="" *ngFor="let guest of guests">
+      
       <ion-label>
         <h2><span>{{guest.firstName}} {{guest.lastName}}</span></h2>
         <p><span>{{guest.relatedness}}</span></p>
@@ -41,6 +46,7 @@
       <ion-icon *ngIf="guest.status === 'undecided'" name="help-circle-outline" slot="end" class="custom"></ion-icon>
     </ion-item>
   </ion-list>
+  
 
   <ion-modal trigger="open-modal-guest">
     <ng-template>
