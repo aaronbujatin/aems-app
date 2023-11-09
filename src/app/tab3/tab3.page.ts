@@ -28,14 +28,15 @@ export class Tab3Page {
   bookings: Booking[];
 
   ngOnInit() {
-    this.getAllVendors();
-    this.initForm();
+    this.getAllVendorsByOrganizerName();
     this.getAllBookingsByOrganizerName();
-
+    this.initForm();
   }
-  
+
   public initForm() {
+    const organizerName = localStorage.getItem('loggedInUsername');
     this.vendorForm = this.formBuilder.group({
+
       eventNameReference: ['', [Validators.required]],
       vendorType: ['', [Validators.required]],
       companyName: ['', [Validators.required]],
@@ -49,6 +50,7 @@ export class Tab3Page {
       emailAddressLine: ['', [Validators.required]],
       paymentStatus: ['', [Validators.required]],
       finalCost: ['', [Validators.required]],
+      organizerName: [organizerName, [Validators.required]],
       contractDescription: ['', [Validators.required]],
     })
   }
@@ -68,8 +70,11 @@ export class Tab3Page {
     return this.vendorForm.controls;
   }
 
-  public getAllVendors() {
-    this.vendorService.getAllVendor().subscribe(
+
+
+  public getAllVendorsByOrganizerName() {
+    const username = localStorage.getItem("loggedInUsername");
+    this.vendorService.getAllVendor(username).subscribe(
       (response: Vendor[]) => {
         this.vendors = response
         console.log(response);
@@ -121,23 +126,29 @@ export class Tab3Page {
   };
 
   onSubmit() {
-    const vendor = this.vendorForm.value
+    const vendor = this.vendorForm.value;
+
     if (this.vendorForm.valid) {
+      const organizerName = localStorage.getItem('loggedInUsername');
+
       this.vendorService.saveVendor(vendor).subscribe(
         (response) => {
-          this.ngOnInit()
-          this.vendorForm.reset()
-          this.presentToast('bottom')
-          this.cancel()
+          this.ngOnInit();
+          this.vendorForm.reset();
+          this.presentToast('bottom');
+          this.cancel();
           console.log(response);
+        },
+        (error) => {
+          this.errorVendorTypeAlreadyExist('bottom');
+          console.log(error);
         }
-      ), (error) => {
-        console.log(error);
-      }
+      );
     } else {
       this.errorInputToast('bottom');
     }
   }
+
 
   async presentToast(position: 'bottom') {
     const toast = await this.toastController.create({
@@ -152,6 +163,16 @@ export class Tab3Page {
   async errorInputToast(position: 'bottom') {
     const toast = await this.toastController.create({
       message: 'Please provide proper input',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
+  async errorVendorTypeAlreadyExist(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Vendor type already exist for this',
       duration: 1500,
       position: position,
     });

@@ -12,8 +12,8 @@ export class PlannerService {
   private baseUrl = "http://localhost:8080"
   constructor(private httpClient : HttpClient) { }
 
-  getAllPlanner() {
-    return this.httpClient.get(`${this.baseUrl}/api/v1/planner`);
+  getPlannerByOrganizerName(organizerName : string) {
+    return this.httpClient.get(`${this.baseUrl}/api/v1/planner/organizer/${organizerName}`);
   }
 
   public savePlanner(planner : Form){

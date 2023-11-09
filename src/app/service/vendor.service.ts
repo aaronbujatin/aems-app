@@ -11,8 +11,9 @@ export class VendorService {
   private API_URL = environment.baseUrl
   private baseUrl = "http://localhost:8080";
 
-  getAllVendor() {
-    return this.httpClient.get(`${this.baseUrl}/api/v1/vendors`)
+
+  getAllVendor(organizerName : string) {
+    return this.httpClient.get(`${this.baseUrl}/api/v1/vendors/event/${organizerName}`)
   }
 
   getVendorById(id:string){

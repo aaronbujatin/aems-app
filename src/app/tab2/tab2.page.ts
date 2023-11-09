@@ -74,6 +74,8 @@ export class Tab2Page {
 
     const planner = this.plannerForm.value
     if (this.plannerForm.valid) {
+      const organizerName = localStorage.getItem('loggedInUsername');
+      planner.organizerName = organizerName
       this.plannerService.savePlanner(planner).subscribe(
         (response) => {
           this.ngOnInit()
@@ -115,11 +117,13 @@ export class Tab2Page {
   plannerForm: FormGroup
 
   public initForm() {
+    const organizerName = localStorage.getItem('loggedInUsername');
     this.plannerForm = this.formBuilder.group({
       message: ['', Validators.required],
       location: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required],
+      organizerName: [organizerName, [Validators.required]],
     })
   }
 
@@ -130,7 +134,8 @@ export class Tab2Page {
   planners: Planner[]
 
   getPlannerApi() {
-    this.plannerService.getAllPlanner().subscribe(
+    const organizerName = localStorage.getItem('loggedInUsername');
+    this.plannerService.getPlannerByOrganizerName(organizerName).subscribe(
       (response: Planner[]) => {
         this.planners = response
         console.log(response);

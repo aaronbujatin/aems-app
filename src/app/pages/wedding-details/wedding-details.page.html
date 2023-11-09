@@ -81,7 +81,7 @@
       </ion-label>
       <br>
       <ion-label class="ion-text-wrap">
-        <span class="bold-text"> Booking date:</span> {{booking.bookingDate}}
+        <span class="bold-text"> Booking date:</span> {{booking.bookingDate | date : 'longDate'}}
       </ion-label>
       <br>
       <ion-button routerLink="/guest-list" size="full" class="colored-button top-button" (click)="getEventName(booking.eventName)"> View Guests List</ion-button>

@@ -55,7 +55,7 @@ export class WeddingDetailsPage implements OnInit {
     const pdfUrlLocal = "http://localhost:8080/api/v1/generate/view/" + this.weddingEventId
     const pdfUrl = "https://be-aems-production.up.railway.app/api/v1/generate/view/" + this.weddingEventId
 
-    const browser = this.inAppBrowser.create(pdfUrl, '_blank');
+    const browser = this.inAppBrowser.create(pdfUrlLocal, '_blank');
     // this.pdfGeneration.generatePdf(this.weddingEventId).subscribe(
     //   (response : string) => {
     //     const browser = this.inAppBrowser.create(pdfUrl, '_blank');

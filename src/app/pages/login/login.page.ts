@@ -11,9 +11,9 @@ import { AuthenticationServiceService } from 'src/app/service/authentication-ser
 export class LoginPage implements OnInit {
 
   constructor(private alertController: AlertController,
-     private authenticationService : AuthenticationServiceService,
-     private router : Router,
-     private loadingController: LoadingController) { }
+    private authenticationService: AuthenticationServiceService,
+    private router: Router,
+    private loadingController: LoadingController) { }
 
   ngOnInit() {
   }
@@ -26,13 +26,15 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  username : string
-  password : string
+  username: string
+  password: string
 
   async loginBtn() {
     const loading = await this.loadingController.create({
       message: 'Logging in...',
       spinner: 'crescent', // You can change the spinner type here
+      cssClass: 'custom-loading-font',
+      
     });
     await loading.present();
 
@@ -40,7 +42,7 @@ export class LoginPage implements OnInit {
       (response) => {
         this.router.navigate(["/tabs"])
         localStorage.setItem('loggedInUsername', this.username);
-        console.log(response); 
+        console.log(response);
         loading.dismiss();
       },
       (error) => {

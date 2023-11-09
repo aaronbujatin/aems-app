@@ -1,8 +1,13 @@
 <ng-http-loader spinner="sk-wave"></ng-http-loader>
 <ion-content [fullscreen]="true">
-  <ion-toolbar>
+  <ion-toolbar color="clear">
     <ion-title>Events</ion-title>
   </ion-toolbar>
+  <div class="ion-text-center" *ngIf="bookings?.length === 0">
+    <h5>
+      No added bookings yet
+    </h5>
+  </div>
   <ion-list class="ion-no-padding" *ngFor="let booking of bookings">
     <ion-card class="ion-no-border ion-no-padding">
       <ion-card-content>

@@ -17,7 +17,8 @@
       <ion-title size="large">Guest list</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="searchGuests()" show-clear-button="focus" placeholder="Search guest" class="custom"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="searchGuests()" show-clear-button="focus"
+    placeholder="Search guest" class="custom"></ion-searchbar>
 
   <ion-button size="small" class="custom" (click)="presentAlertRadio()">
     <ion-icon slot="start" name="filter-outline"></ion-icon>
@@ -29,13 +30,15 @@
   </ion-button>
   <ion-alert trigger="filter-alert" header="Filter guest" [buttons]="alertButtons" [inputs]="alertInputs"></ion-alert>
 
-  
-  <ion-list>
-    <ion-label *ngIf="guests?.length === 0">
-      No added guest yet
-    </ion-label>
+  <div class="ion-text-center" *ngIf="guests?.length === 0">
+    <h5>
+      No added guests yet
+    </h5>
+  </div>
+  <ion-list *ngIf="guests?.length !== 0">
+
     <ion-item class="" *ngFor="let guest of guests">
-      
+
       <ion-label>
         <h2><span>{{guest.firstName}} {{guest.lastName}}</span></h2>
         <p><span>{{guest.relatedness}}</span></p>
@@ -46,7 +49,7 @@
       <ion-icon *ngIf="guest.status === 'undecided'" name="help-circle-outline" slot="end" class="custom"></ion-icon>
     </ion-item>
   </ion-list>
-  
+
 
   <ion-modal trigger="open-modal-guest">
     <ng-template>
@@ -85,8 +88,8 @@
             </div>
           </div>
           <br>
-          <ion-input label="Enter relatedness" formControlName="relatedness" label-placement="floating" fill="outline" color="dark"
-            placeholder="Ex. Cousin"></ion-input>
+          <ion-input label="Enter relatedness" formControlName="relatedness" label-placement="floating" fill="outline"
+            color="dark" placeholder="Ex. Cousin"></ion-input>
           <div *ngIf="this.guestForm.controls['relatedness'].touched && this.guestForm.controls['relatedness'].invalid">
             <div class="error ion-no-padding validator-text" *ngIf="errorControl['relatedness'].errors['required']">
               <ion-text color="danger">Relation is required.</ion-text>

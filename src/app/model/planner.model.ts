@@ -5,5 +5,6 @@ export class Planner {
     location : string 
     date : string
     time : string
+    organizerName: string;
 
 }

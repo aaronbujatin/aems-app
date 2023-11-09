@@ -3,6 +3,11 @@
   <ion-toolbar color="clear">
     <ion-title>Planners</ion-title>
   </ion-toolbar>
+  <div class="ion-text-center" *ngIf="planners?.length === 0">
+    <h5>
+      No added planner yet
+    </h5>
+  </div>
   <ion-list class="" *ngFor="let planner of planners">
     <ion-card class="ion-no-border ion-no-padding">
       <ion-card-content>
@@ -26,14 +31,18 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="4">
+            <ion-col size="12">
               <ion-icon color="light" name="location-outline"></ion-icon> {{planner.location}}
             </ion-col>
-            <ion-col size="4">
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
               <ion-icon name="calendar-outline"></ion-icon> {{planner.date | date :
-              'shortDate'}}
+              'mediumDate'}}
             </ion-col>
-            <ion-col size="4">
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
               <ion-icon name="time-outline"></ion-icon> {{planner.time | customTimeFormat }}
             </ion-col>
           </ion-row>
@@ -48,7 +57,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
+
   <ion-modal trigger="open-modal-planner" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-header>

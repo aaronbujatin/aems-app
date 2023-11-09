@@ -1,8 +1,13 @@
 <ng-http-loader spinner="sk-wave"></ng-http-loader>
 <ion-content [fullscreen]="true">
-  <ion-toolbar>
+  <ion-toolbar color="clear">
     <ion-title>Vendors</ion-title>
   </ion-toolbar>
+  <div class="ion-text-center" *ngIf="vendors?.length === 0">
+    <h5>
+      No added vendors yet
+    </h5>
+  </div>
   <ion-list class="ion-no-padding" *ngFor="let vendor of vendors">
     <ion-card class="ion-no-border ion-no-padding">
       <ion-card-content>
@@ -38,7 +43,8 @@
           <h4>Add new vendor:</h4>
           <ion-select formControlName="eventNameReference" label="Event name reference" label-placement="floating"
             fill="outline">
-            <ion-select-option *ngFor="let booking of bookings" [value]="booking.eventName">{{booking.eventName}}</ion-select-option>
+            <ion-select-option *ngFor="let booking of bookings"
+              [value]="booking.eventName">{{booking.eventName}}</ion-select-option>
           </ion-select>
           <div
             *ngIf="this.vendorForm.controls['eventNameReference'].touched && this.vendorForm.controls['eventNameReference'].invalid">
@@ -48,21 +54,21 @@
           </div>
           <br>
           <ion-item fill="outline" lines="none">
-            <ion-select label="Select vendor type" formControlName="vendorType" >
-              <ion-select-option value="Officiant">Officiant</ion-select-option>
-              <ion-select-option value="Ceremony">Ceremony</ion-select-option>
-              <ion-select-option value="Reception">Reception</ion-select-option>
-              <ion-select-option value="Caterer">Caterer</ion-select-option>
-              <ion-select-option value="Tables & Chairs">Tables & Chairs</ion-select-option>
-              <ion-select-option value="Photographer">Photographer</ion-select-option>
-              <ion-select-option value="Videographer">Videographer</ion-select-option>
-              <ion-select-option value="Cake Baker">Cake Baker</ion-select-option>
-              <ion-select-option value="Stationer">Stationer</ion-select-option>
-              <ion-select-option value="Lights & Sound">Lights & Sound</ion-select-option>
-              <ion-select-option value="Musicians">Musicians</ion-select-option>
-              <ion-select-option value="Bridal Car">Bridal Car</ion-select-option>
-              <ion-select-option value="Flowerist">Flowerist</ion-select-option>
-              <ion-select-option value="Makeup Artist">Makeup Artist</ion-select-option>
+            <ion-select label="Select vendor type" formControlName="vendorType">
+              <ion-select-option value="officiant">Officiant</ion-select-option>
+              <ion-select-option value="ceremony">Ceremony</ion-select-option>
+              <ion-select-option value="reception">Reception</ion-select-option>
+              <ion-select-option value="caterer">Caterer</ion-select-option>
+              <ion-select-option value="tables & Chairs">Tables & Chairs</ion-select-option>
+              <ion-select-option value="photographer">Photographer</ion-select-option>
+              <ion-select-option value="videographer">Videographer</ion-select-option>
+              <ion-select-option value="cake Baker">Cake Baker</ion-select-option>
+              <ion-select-option value="stationer">Stationer</ion-select-option>
+              <ion-select-option value="lights & Sound">Lights & Sound</ion-select-option>
+              <ion-select-option value="musicians">Musicians</ion-select-option>
+              <ion-select-option value="bridal Car">Bridal Car</ion-select-option>
+              <ion-select-option value="flowerist">Flowerist</ion-select-option>
+              <ion-select-option value="makeup Artist">Makeup Artist</ion-select-option>
             </ion-select>
           </ion-item>
           <!-- <br>
@@ -112,7 +118,8 @@
             <div class="ion-no-padding" *ngIf="errorControl['contact'].errors?.['pattern']">
               <ion-text color="danger">Please provide valid contact number.</ion-text>
             </div>
-            <div class="ion-no-padding" *ngIf="errorControl['contact'].errors?.['maxlength'] || errorControl['contact'].errors?.['minlength']">
+            <div class="ion-no-padding"
+              *ngIf="errorControl['contact'].errors?.['maxlength'] || errorControl['contact'].errors?.['minlength']">
               <ion-text color="danger">Phone number must be at least 11 numbers</ion-text>
             </div>
           </div>
@@ -131,8 +138,9 @@
           </ion-item>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime #contractSigned (ionChange)=" contractSignedDateChanged(contractSigned.value)" id="contractSigned"
-                [showDefaultButtons]="true" presentation="date" display-format="YYYY-MM-DD"></ion-datetime>
+              <ion-datetime #contractSigned (ionChange)=" contractSignedDateChanged(contractSigned.value)"
+                id="contractSigned" [showDefaultButtons]="true" presentation="date"
+                display-format="YYYY-MM-DD"></ion-datetime>
             </ng-template>
           </ion-modal>
           <br>
@@ -142,8 +150,9 @@
           </ion-item>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime #contractExpired (ionChange)=" contractExpiredDateChanged(contractExpired.value)" id="contractExpired"
-                [showDefaultButtons]="true" presentation="date" display-format="YYYY-MM-DD"></ion-datetime>
+              <ion-datetime #contractExpired (ionChange)=" contractExpiredDateChanged(contractExpired.value)"
+                id="contractExpired" [showDefaultButtons]="true" presentation="date"
+                display-format="YYYY-MM-DD"></ion-datetime>
             </ng-template>
           </ion-modal>
           <br>
