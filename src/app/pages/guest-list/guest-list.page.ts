@@ -11,19 +11,19 @@ import { GuestService } from 'src/app/service/guest.service';
 })
 export class GuestListPage implements OnInit {
 
-  constructor(private guestService: GuestService, 
-    private alertController: AlertController, 
-    private loadingController: LoadingController, 
+  constructor(private guestService: GuestService,
+    private alertController: AlertController,
+    private loadingController: LoadingController,
     private formBuilder: FormBuilder,
     private toastController: ToastController) {
-    
-   }
+
+  }
 
   ngOnInit() {
     this.initForm();
     this.getAllGuestByEventName()
     console.log(this.guestService.eventNameReference);
-    
+
 
   }
 
@@ -47,7 +47,7 @@ export class GuestListPage implements OnInit {
 
 
   guests: Guest[]
-  currentFilter : string = "All"
+  currentFilter: string = "All"
 
   async presentAlertRadio() {
     const alert = await this.alertController.create({
@@ -85,12 +85,12 @@ export class GuestListPage implements OnInit {
           text: 'Ok',
           handler: (data) => {
             // this.loadGuestByStatus(data)
-            if(data === 'all') {
+            if (data === 'all') {
               this.getAllGuestByEventName();
               this.currentFilter = "All"
-            } else if( data === 'confirmed' || data === 'undecided') {
+            } else if (data === 'confirmed' || data === 'undecided') {
               this.guestService.getAllGuestByEventNameAndStatus(this.guestService.eventNameReference, data).subscribe(
-                (response : Guest[]) => {
+                (response: Guest[]) => {
                   this.currentFilter = data
                   this.guests = response;
                   console.log(this.guests);
@@ -108,7 +108,7 @@ export class GuestListPage implements OnInit {
   }
 
   @ViewChild(IonModal) modal: IonModal;
- 
+
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
@@ -126,6 +126,7 @@ export class GuestListPage implements OnInit {
       email: ['', Validators.required],
       eventNameReference: [this.guestService.eventNameReference, Validators.required],
       relatedness: ['', Validators.required],
+      tableNumber: ['', Validators.required]
     })
   }
 
@@ -133,30 +134,39 @@ export class GuestListPage implements OnInit {
   async onSubmit() {
     const loading = await this.loadingController.create({
       message: 'Processing...',
-      spinner: 'crescent', // You can change the spinner type here
+      spinner: 'crescent',
     });
     await loading.present();
-
-    const guest = this.guestForm.value
+  
+    const guest = this.guestForm.value;
   
     if (this.guestForm.valid) {
       this.guestService.saveGuest(guest).subscribe(
         (response) => {
-          this.ngOnInit()
-          this.guestForm.reset()
-          this.presentToast('bottom')
-          this.cancel()
+          this.ngOnInit();
+          this.guestForm.reset();
+          this.presentToast('bottom');
+          this.cancel();
           loading.dismiss();
-          console.log(response);
+          console.log("Guest saved");
+        },
+        (error) => {
+          if (error.status === 500) {
+            console.log('Before calling errorTableInputNumberAlreadyExistsToast');
+            this.errorTableInputNumberAlreadyExistsToast('bottom');
+            console.log('After calling errorTableInputNumberAlreadyExistsToast');
+          }
+          console.log(error);
+          loading.dismiss();
         }
-      ), (error) => {
-        console.log(error);
-        loading.dismiss();
-      }
+      );
     } else {
       loading.dismiss();
+      console.log("Invalid guest");
       this.errorInputToast('bottom');
     }
+  
+    console.log(this.guestForm.value);
   }
 
   get errorControl() {
@@ -183,6 +193,16 @@ export class GuestListPage implements OnInit {
     await toast.present();
   }
 
+  async errorTableInputNumberAlreadyExistsToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Table number already exists',
+      duration: 1500,
+      position: position,
+    });
+
+    await toast.present();
+  }
+
   async showSuccessLoading() {
     const loading = await this.loadingController.create({
       message: 'Adding...',
@@ -192,24 +212,24 @@ export class GuestListPage implements OnInit {
     loading.present();
   }
 
-  searchQuery : string = ""
+  searchQuery: string = ""
 
-  searchGuests(){
+  searchGuests() {
     this.guestService.getSearchByEventNameAndFirstNameOrLastName(this.guestService.eventNameReference, this.searchQuery).subscribe(
-      (response : Guest[]) => {
+      (response: Guest[]) => {
         this.guests = response
         console.log(response);
       }, (error) => {
         console.log(error);
       }
     )
-    
+
   }
 
 
-  public getAllGuestByEventName(){
+  public getAllGuestByEventName() {
     this.guestService.getAllGuestByEventName(this.guestService.eventNameReference).subscribe(
-      (response : Guest[]) => {
+      (response: Guest[]) => {
         this.guests = response
         console.log(response);
       }, (error) => {

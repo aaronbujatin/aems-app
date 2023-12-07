@@ -1,4 +1,6 @@
-
+// ion-header::after {
+//     background-image: none;
+// }
 
 ion-card {
     background: rgba(255, 87, 87);
@@ -15,7 +17,7 @@ ion-card {
 }
 
 .item-container {
-    --ion-item-detail-color: white !important; 
+    --ion-item-detail-color: white !important;
 
     .label-container {
         color: white;
@@ -31,15 +33,15 @@ ion-card {
 }
 
 
-ion-title {
-    &.md {
-        width: 100%;
-        position: absolute;
-        left: 0;
-        height: 0;
-        text-align: center;
-    }
-}
+// ion-title {
+//     &.md {
+//         width: 100%;
+//         position: absolute;
+//         left: 0;
+//         height: 0;
+//         text-align: center;
+//     }
+// }
 
 .color-bg::part(native) {
     background: rgba(255, 87, 87);
@@ -50,4 +52,9 @@ ion-title {
     background: -ms-linear-gradient(left, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
     background: linear-gradient(to right, rgba(255, 87, 87) 0%, rgba(140, 82, 255) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ed2400, endColorstr=#006333, GradientType=1);
+}
+
+.alert-image {
+    width: 100%;
+    border-radius: 50%;
 }

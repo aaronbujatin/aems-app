@@ -53,41 +53,40 @@ export class WeddingDetailsPage implements OnInit {
   viewPdfContract() {
 
     const pdfUrlLocal = "http://localhost:8080/api/v1/generate/view/" + this.weddingEventId
-    const pdfUrl = "https://be-aems-production.up.railway.app/api/v1/generate/view/" + this.weddingEventId
+    const pdfUrl = "https://striped-act-production.up.railway.app/api/v1/generate/view/" + this.weddingEventId
 
-    const browser = this.inAppBrowser.create(pdfUrlLocal, '_blank');
-    // this.pdfGeneration.generatePdf(this.weddingEventId).subscribe(
-    //   (response : string) => {
-    //     const browser = this.inAppBrowser.create(pdfUrl, '_blank');
-    //   }, (error) => {
-    //     console.log(error);
-    //   }
-    // )
+    const browser = this.inAppBrowser.create(pdfUrl, '_blank');
+
+    this.pdfGeneration.generatePdf(this.weddingEventId).subscribe(
+      (response) => {
+        
+      }
+    )
   }
 
   getEventName(eventName : string){
     this.guestService.eventNameReference = eventName;
   }
 
-  viewPdf(){
+  // viewPdf(){
 
-    const url = "http://localhost:8080/api/v1/generate/view/" + this.weddingEventId
-    this.loader.create({
+  //   const url = "https://striped-act-production.up.railway.app/api/v1/generate/view/" + this.weddingEventId
+  //   this.loader.create({
       
-      duration : 3000,
-      message : "Opening pdf..."
-    }).then ((ele) => {
-      ele.present();
-      window.PreviewAnyFile.previewPath(
-        succes => {
-            ele.dismiss()
-        }, error => {
-            ele.dismiss()
-            alert(JSON.stringify(error));
-        },
-        url
-      )
-    })
-  }
+  //     duration : 3000,
+  //     message : "Opening pdf..."
+  //   }).then ((ele) => {
+  //     ele.present();
+  //     window.PreviewAnyFile.previewPath(
+  //       succes => {
+  //           ele.dismiss()
+  //       }, error => {
+  //           ele.dismiss()
+  //           alert(JSON.stringify(error));
+  //       },
+  //       url
+  //     )
+  //   })
+  // }
 
 }

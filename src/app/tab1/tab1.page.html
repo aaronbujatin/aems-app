@@ -1,7 +1,29 @@
 <ng-http-loader spinner="sk-wave"></ng-http-loader>
 <ion-content [fullscreen]="true">
-  <ion-toolbar color="clear">
-    <ion-title>Events</ion-title>
+  <!-- <ion-header > -->
+  <!-- <ion-toolbar color="clear">
+      <ion-title>Events</ion-title> -->
+  <!-- <ion-buttons slot="end">
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </ion-buttons> -->
+  <!-- </ion-toolbar> -->
+  <!-- </ion-header> -->
+  <ion-toolbar color="none">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Events
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-label>{{username}}</ion-label>
+      <ion-avatar>
+
+        <img src="data:image/jpeg;base64,{{image}}" width="40px" height="40px" style="padding: 8px;">
+      </ion-avatar>
+    </ion-buttons>
   </ion-toolbar>
   <div class="ion-text-center" *ngIf="bookings?.length === 0">
     <h5>
@@ -11,15 +33,16 @@
   <ion-list class="ion-no-padding" *ngFor="let booking of bookings">
     <ion-card class="ion-no-border ion-no-padding">
       <ion-card-content>
-        <ion-item lines="none" color="none"  class="ion-no-padding item-container">
+        <ion-item lines="none" color="none" class="ion-no-padding item-container">
           <ion-label class="label-container">
             <h2><span class="label-title">Event name : </span> {{booking.eventName}}</h2>
             <p><span class="label-subtitle">Client name : </span>{{booking.clientName}}</p>
           </ion-label>
-          <ion-icon name="chevron-forward-outline" slot="end" color="light" [routerLink]="['/wedding-details', booking.id]"></ion-icon>
+          <ion-icon name="chevron-forward-outline" slot="end" color="light"
+            [routerLink]="['/wedding-details', booking.id]"></ion-icon>
         </ion-item>
       </ion-card-content>
     </ion-card>
-    
+
   </ion-list>
 </ion-content>

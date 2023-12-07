@@ -9,19 +9,19 @@ export class PlannerService {
 
   private API_URL = environment.baseUrl
 
-  private baseUrl = "http://localhost:8080"
+  private LOCAL_API = "http://localhost:8080"
   constructor(private httpClient : HttpClient) { }
 
   getPlannerByOrganizerName(organizerName : string) {
-    return this.httpClient.get(`${this.baseUrl}/api/v1/planner/organizer/${organizerName}`);
+    return this.httpClient.get(`${this.LOCAL_API}/api/v1/planner/organizer/${organizerName}`);
   }
 
   public savePlanner(planner : Form){
-    return this.httpClient.post(`${this.baseUrl}/api/v1/planner`, planner)
+    return this.httpClient.post(`${this.LOCAL_API}/api/v1/planner`, planner)
   }
 
   public deletePlannerById(id : string) {
-    return this.httpClient.delete(`${this.baseUrl}/api/v1/planner/${id}`)
+    return this.httpClient.delete(`${this.LOCAL_API}/api/v1/planner/${id}`)
   }
 
 

@@ -12,15 +12,15 @@ export class PdfGenerationService {
 
   private API_URL = environment.baseUrl
 
-  private baseUrl = "http://localhost:8080"
+  private LOCAL_API = "http://localhost:8080"
 
   public generatePdf(id: string) {
-    return this.httpClient.get(`${this.baseUrl}/api/v1/generate/view/${id}`);
+    return this.httpClient.get(`${this.LOCAL_API}/api/v1/generate/view/${id}`);
   }
 
-  public viewPdf(id: string){
-    const url = this.baseUrl +"/api/v1/generate/view/" + id;
-    return this.httpClient.get(url, { responseType: 'blob' });
-  }
+  // public viewPdf(id: string){
+  //   const url = this.LOCAL_API +"/api/v1/generate/view/" + id;
+  //   return this.httpClient.get(url, { responseType: 'blob' });
+  // }
 
 }

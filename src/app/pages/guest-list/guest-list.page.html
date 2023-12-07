@@ -95,6 +95,14 @@
               <ion-text color="danger">Relation is required.</ion-text>
             </div>
           </div>
+          <br>
+          <ion-input label="Enter table number" formControlName="tableNumber" label-placement="floating" fill="outline"
+            color="dark" placeholder="Ex. 24"></ion-input>
+          <div *ngIf="this.guestForm.controls['tableNumber'].touched && this.guestForm.controls['tableNumber'].invalid">
+            <div class="error ion-no-padding validator-text" *ngIf="errorControl['tableNumber'].errors['required']">
+              <ion-text color="danger">Table number is required.</ion-text>
+            </div>
+          </div>
           <ion-button type="submitForm" size="full" class="colored-button">Confirm</ion-button>
         </form>
       </ion-content>

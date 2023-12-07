@@ -12,25 +12,30 @@ export class GuestService {
 
   private API_URL = environment.baseUrl;
 
-  private localUrl = "http://localhost:8080"
+  private LOCAL_API = "http://localhost:8080"
 
   eventNameReference : string;
   
 
   public saveGuest(guest: Form) {
-    return this.httpClient.post(`${this.localUrl}/api/v1/guests`, guest);
+    return this.httpClient.post(`${this.LOCAL_API}/api/v1/guests`, guest);
+  }
+
+  public isTableNumberAndEventNameReferenceExists(guest : Form, eventNameReference : string){
+    
+    return this.httpClient.get(`${this.LOCAL_API}/api/v1/guest/`)
   }
 
   public getAllGuestByEventName(eventName : string){
-    return this.httpClient.get(`${this.localUrl}/api/v1/guests/event?eventName=${eventName}`)
+    return this.httpClient.get(`${this.LOCAL_API}/api/v1/guests/event?eventName=${eventName}`)
   }
 
   public getAllGuestByEventNameAndStatus(eventName : string, status : string){
-    return this.httpClient.get(`${this.localUrl}/api/v1/guests/filter?eventName=${eventName}&status=${status}`)
+    return this.httpClient.get(`${this.LOCAL_API}/api/v1/guests/filter?eventName=${eventName}&status=${status}`)
   }
 
   public getSearchByEventNameAndFirstNameOrLastName(eventName : string, searchQuery : string){
-    return this.httpClient.get(`${this.localUrl}/api/v1/guests/search?eventName=${eventName}&searchQuery=${searchQuery}`)
+    return this.httpClient.get(`${this.LOCAL_API}/api/v1/guests/search?eventName=${eventName}&searchQuery=${searchQuery}`)
   }
 
 
